@@ -5,8 +5,8 @@
 url: http://zhenwusw.github.io
 title: zhenwusw
 subtitle: learning & writings.
-author: zhen wu
-simple_search: http://google.com/search
+author: zhen
+simple_search:
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -98,3 +98,6 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+# Coderwall
+# coderwall_user: zhenwusw

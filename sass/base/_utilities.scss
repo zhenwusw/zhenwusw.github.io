@@ -1,24 +1,20 @@
-@mixin square($property){
-	width: $property;
-	height: $property;
+@mixin selection($bg, $color: inherit, $text-shadow: none){
+  * {
+    &::-moz-selection { background: $bg; color: $color; text-shadow: $text-shadow; }
+    &::-webkit-selection { background: $bg; color: $color; text-shadow: $text-shadow; }
+    &::selection { background: $bg; color: $color; text-shadow: $text-shadow; }
+  }
 }
-@mixin user-select($select){
-	-moz-user-select: $select;
-	-khtml-user-select: $select;
-	-webkit-user-select: $select;
-	-o-user-select: $select;
-	user-select: $select;
+
+/* clearfix utility class */
+.clearfix:before,
+.clearfix:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
 }
-@mixin border-shadow($top: $color-gray05, $bottom: $color-gray04){
-	border-top: 1px solid $top;
-	border-bottom: 1px solid $bottom;
+.clearfix:after {
+    clear: both;
 }
-@mixin center($width, $height){
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-left: $width/(-2);
-	margin-top: $height/(-2);
-	width: $width;
-	height: $height;
+.clearfix {
+    *zoom: 1;
 }
