@@ -3,7 +3,7 @@ layout: post
 title: "One single file rails application"
 date: 2013-08-24 22:22
 comments: true
-categories:
+categories: ['rails']
 ---
 
 Goodies:

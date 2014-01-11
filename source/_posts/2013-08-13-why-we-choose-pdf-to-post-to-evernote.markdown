@@ -3,7 +3,7 @@ layout: post
 title: "Why we choose PDF to post to Evernote"
 date: 2013-08-13 07:34
 comments: true
-categories:
+categories: ['evernote', 'work']
 ---
 
   On one of our projects, Evernote is one of the services that users can
