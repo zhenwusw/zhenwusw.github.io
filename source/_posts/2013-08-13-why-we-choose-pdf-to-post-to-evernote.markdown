@@ -48,7 +48,7 @@ One of my colleagues suggested that we could use PhantomJS, a headless
 WebKit scriptable with a JavaScript API, to help generate the maps
 images.
 
-{% img center /images/phantomjs-route.png 800 400 Place Kitten #2 %}
+{% img center /images/phantomjs-route.png 450 200 Place Kitten #2 %}
 
   PhantomJS is a great tool, but it’s a bit heavy to just create an image
 from our site, and it makes things more complicated to write some extra
@@ -71,4 +71,4 @@ we met when creating ENML documents. With a simple and popular shell
 utility wkhtmltopdf in hand, we can easily convert our HTML to PDF
 easily using the webkit rendering engine.
 
-{% img center /images/plan.png 800 300 Place Kitten #2 %}
+{% img center /images/plan.png 500 300 Place Kitten #2 %}
