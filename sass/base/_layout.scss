@@ -6,6 +6,10 @@ $logo-inner-height: 90px;
 $logo-inner-width: 90px;
 $logo-inner-radius: 50%;
 
+html {
+  zoom: 1.2;
+}
+
 body {
   min-width: $min-width;
   font-size: 1em;
