@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "why we choose PDF to post to Evernote"
+title: "Why we choose PDF to post to Evernote"
 date: 2013-08-13 07:34
 comments: true
 categories:
