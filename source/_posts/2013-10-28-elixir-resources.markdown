@@ -3,7 +3,7 @@ layout: post
 title: "Elixir resources"
 date: 2013-10-28 21:05
 comments: true
-published: false
+published: true
 ---
 
 [Elixir](http://elixir-lang.org/) is a functional, meta-programming aware
