@@ -72,6 +72,9 @@ github_skip_forks: true
 twitter_user: zhenwusw
 twitter_tweet_button: true
 
+# About.me
+aboutme_user: zhenwusw
+
 # Google +1
 google_plus_one: false
 google_plus_one_size: medium
