@@ -9,7 +9,7 @@ categories:
 Goodies:
   * if you find bugs inside rails, you can post as Gist with single file application without a bloated rails application  *
 
-```
+```ruby
 require "sinatra::Base"
 class MyApp < Sinatra::Base
   get "/" do
@@ -25,27 +25,27 @@ rails rackup file:
 <!-- more -->
 
 
-```
+```ruby
 # config.ru
 require ::File.expand_path('../config/environment', __FILE__)
 run MyApp::Application
 ```
 
 
-```
+```ruby
 # config/environemnt.rb
 require File.expane_path('../application', __FILE__)
 MyApp::Application.initialize!
 ```
 
-```
+```ruby
 # config/application.rb
 require File.expan_path('../boot', __FILE__)
 module MyApp
   class Application < Rails::Application
 ```
 
-```
+```ruby
 # config/boot.rb
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 require 'bundler/setup'
@@ -61,13 +61,13 @@ require 'bundler/setup'
 In new rails version, we have a Rakefile that just load `application` file
 because we don't need to do the initialization process
 
-```
+```ruby
 # Rakefile
 require File.expand_path('../config/application', __FILE__)
 MyApp::Application.load_tasks
 ```
 
-```
+```ruby
 # lib/task/my_tasks.rake
 task :hello => :environment do
   # ...
@@ -75,7 +75,7 @@ end
 ```
 
 example
-```
+```ruby
 get "/", to: "posts#index"
 -> get "/", to: PostsController.action(:index)
 ```
