@@ -1,5 +1,6 @@
 .bundle
 .DS_Store
+.preview-mode
 .sass-cache
 .gist-cache
 .pygments-cache
