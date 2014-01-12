@@ -7,10 +7,11 @@ categories: ['elixir']
 published: true
 ---
 
-
- > Elixir is a functional meta-programming aware language built on top of the Erlang VM.
+{% blockquote Jose Valim http://elixir-lang.org/  Elixir homepage %}
+ Elixir is a functional meta-programming aware language built on top of the Erlang VM.
  It is a dynamic language with flexible syntax with macros support that leverages Erlang's
  abilities to build concurrent, distributed, fault-tolerant applications with hot code upgrades.
+{% endblockquote %}
 
 
 Just as [Benjamin][benjamin-blog-link] said: Having a pretty syntax wrapped around the powerful Erlang VM seems to be
