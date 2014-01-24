@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dynamo | zhenwusw]]></title>
+  <link href="http://zhenwusw.github.io/blog/categories/dynamo/atom.xml" rel="self"/>
+  <link href="http://zhenwusw.github.io/"/>
+  <updated>2014-01-24T23:18:24+08:00</updated>
+  <id>http://zhenwusw.github.io/</id>
+  <author>
+    <name><![CDATA[zhen]]></name>
+    <email><![CDATA[zhenwusw@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Dynamo] Code organization in environments]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/12/code-organization-in-environments/"/>
+    <updated>2014-01-12T11:07:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/12/code-organization-in-environments</id>
+    <content type="html"><![CDATA[<p>First of all, Dynamo is a <a href="http://elixir-lang.org/getting_started/mix/1.html">mix</a> project, which shipping with environments independence naturally.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mix.exs </span></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='exs'><span class='line'><span class="ss">deps:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="c1"># dev, test, prod</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>coming soon&hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>
