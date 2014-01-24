@@ -6,6 +6,10 @@ comments: false
 categories: ['ruby internal']
 ---
 
+The code Ruby actually runs looks nothing like your original code.
+
+
+## How Ruby interpret execute your ruby code
 
 {% img center /images/2014-01/code-journey-through-ruby.png 470 150 %}
 
@@ -63,9 +67,20 @@ which is a series of tokens converted from our ruby code
 
 Tokens are grouped into sentences or phrases that make sense to Ruby.
 
-Ruby uses a `paser generator`
+
+{% img center /images/2014-01/ruby-bison-diagram.png 300 250 %}
+
+
+* LALR parsing algorithm
+
+Ruby optionally dispalys debug information, showing how the parser jumps from one state to another, by using  `ruby -y simple.rb`
 
 
 
+AS Ruby parses your code, matching one grammar rule after another, it converts the tokenss in your code file into a comlex interal data structure called **an abstract syntax tree** 
 
 
+The AST is used to record the structure and syntactical meaning of your Ruby code
+
+
+{% img center /images/2014-01/ast.png 500 350 %}
