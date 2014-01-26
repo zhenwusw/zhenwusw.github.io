@@ -9,7 +9,7 @@
   <meta name="author" content="zhen">
 
   
-  <meta name="description" content="Tweet Elixir-notes Jan 26th, 2014 What&rsquo;s different between Elixir and Erlang The funny thing is that Erlang and Elixir are the same thing &hellip;">
+  <meta name="description" content="Tweet Elixir Notes Jan 26th, 2014 What&rsquo;s different between Elixir and Erlang The funny thing is that Erlang and Elixir are the same thing &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,7 +101,7 @@
     
       <h2 class="entry-title">
         
-        <a href="/blog/2014/01/26/elixir-notes/">Elixir-notes</a>
+        <a href="/blog/2014/01/26/elixir-notes/">Elixir Notes</a>
         
       </h2>
     
@@ -202,8 +202,6 @@ more uniform representation, which makes meta-programming far easier.</p>
 <p>Outter variable won&rsquo;t break the closure, so it would always return the same
 result for the same closure passsin the same parameters.</p>
 
-<h2>What&rsquo;s Static Single Assignment</h2>
-
 <h2>Why are there two kinds of functions in Elixir</h2>
 
 <ol>
@@ -228,6 +226,56 @@ we can&rsquo;t access the outer scoped variable like Closure</p></li>
 <blockquote><p>This is also why Elixir uses a dot for calling anonymous functions. Since you can&rsquo;t simply pass hello around as a function, instead you need to explicitly capture it, there is a natural distinction in between them, and a explicit syntax for calling each makes everything a bit more explicit.</p>
 
 <p>It is not an implementation constraint in the sense that it could also work as f() (without the dot).</p></blockquote>
+
+<h2>Protocols in Elixir</h2>
+
+<p>Protocols are mechanism to achive polyorphism in Elixir. It allows us to
+manipulate any data structure without a need to wrap it or recompile it.</p>
+
+<h2>What&rsquo;s treated false in Elixir</h2>
+
+<p>Actually, only <code>false</code> and <code>nil</code> are treated as false. Everything else
+evaluates to true, even numeric 0, empty list, empty binary.</p>
+
+<h2>Built in protocols</h2>
+
+<ul>
+<li><p>Access
+We can always see something like <code>x = [a: 1, b: 2]</code>, that&rsquo;s because
+Access it the built-in protocols in Elixir</p></li>
+<li><p>Enumerable
+Any data structures that can be enumerated must implement this protocol.</p></li>
+<li><p>Inspect
+this protocol is used to transform any data structure into a readable textual representation. This is what tools like IEx use to print results:</p></li>
+<li><p>String.Chars
+Specifies how to convert a data structure with characters to a string. It&rsquo;s exposed via the to_string function:</p></li>
+</ul>
+
+
+<h2>Don&rsquo;t use exceptions for control-flow, let&rsquo;s fast fail</h2>
+
+<h2>Macros</h2>
+
+<p>An Elixir program can be represented by its own data structures => building
+block. like:</p>
+
+<p>{ :sum, [], [1, 2, 3] } => { function, metadata, args }</p>
+
+<p>you could ge the representation of <em>any expression</em> by using the <code>quote</code>:</p>
+
+<p><code>1 + 2</code> => <code>{:+, [context: Elixir, import: Kernel], [1, 2]}</code></p>
+
+<p><code>sum(1 + 2)</code> => {:sum, [], [{:+, [context: Elixir, import: Kernel], [1, 2]}]}</p>
+
+<p>specially, variables are represented as</p>
+
+<p><code>x</code> => <code>{ :x, [], Elixir }</code></p>
+
+<p>For more complex expressions, we can see the representation is composed of
+such nested tuples. Which can be resembled as a tree where each tuple is a
+node.</p>
+
+<p>Genearal format: { tuple | atom, list, list | atom }</p>
 
   
   
