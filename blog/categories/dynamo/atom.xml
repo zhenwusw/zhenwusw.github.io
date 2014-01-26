@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dynamo | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/dynamo/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-01-24T23:18:24+08:00</updated>
+  <updated>2014-01-26T15:47:56+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mix introduction]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/"/>
+    <updated>2014-01-25T11:18:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/25/mix-introduction</id>
+    <content type="html"><![CDATA[<p>When we &hellip;, we can see &hellip; after we pull code from dynamo repo</p>
+
+<p>Get Dynamo dependencies and run tests with:
+  <code>MIX_ENV=test mix do deps.get, test</code></p>
+
+<p>Running this command, you will fetch dependencies, compile, and then test the
+framework, make sure you are on the right version with Elixir and Dynamo.</p>
+
+<p>Then runing <code>mix dynamo ../mynamo</code>, Mix will create a directory named mynamo with few files in it:</p>
+
+<p><code>
+➜  dynamo git:(bf86566) ✗ mix dynamo ../mynamo
+* creating README.md
+* creating .gitignore
+* creating mix.lock
+  ...
+</code></p>
+
+<p>Note that I can use <code>mix</code> here because <code>mix</code> is an Elixir executable.
+You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> executable&rsquo;s option</p>
+
+<p><code>➜ bin/elixir -S mix new ./my_project</code></p>
+
+<p><code>bin/elixir</code></p>
+
+<p>So let&rsquo;s see what Mix is:</p>
+
+<h2>MIX &ndash; A BUILD TOOL FOR ELIXIR</h2>
+
+<ol>
+<li><a href="http://elixir-lang.org/getting_started/mix/1.html">Introduction to Mix</a></li>
+<li><a href="">Building OTP apps with Mix</a></li>
+<li><a href="">Creating custom Mix tasks</a></li>
+</ol>
+
+
+<p>Mix is a build tool that provides</p>
+
+<ul>
+<li>creating</li>
+<li>compiling</li>
+<li>testing</li>
+<li>releasing (coming soon&hellip;)</li>
+</ul>
+
+
+<p>which ships with every Elixir release.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Dynamo] Code organization in environments]]></title>

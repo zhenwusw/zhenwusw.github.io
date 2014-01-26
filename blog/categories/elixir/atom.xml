@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elixir | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/elixir/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-01-24T23:18:24+08:00</updated>
+  <updated>2014-01-26T15:47:56+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -12,6 +12,171 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[elixir-notes]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/26/elixir-notes/"/>
+    <updated>2014-01-26T13:40:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/26/elixir-notes</id>
+    <content type="html"><![CDATA[<h2>What&rsquo;s different between Elixir and Erlang</h2>
+
+<blockquote><p>The funny thing is that Erlang and Elixir are the same thing under the
+  surface. They “feel” the same to me. &mdash; Joe</p></blockquote>
+
+<p>They both compile instructions(Ruby above 1.9 also has YARV instructions)
+for the EVM.</p>
+
+<ul>
+<li>garbage collection behavior</li>
+<li>non-shared concurrency model</li>
+<li>underlying error handling</li>
+<li>code loading mechanism</li>
+</ul>
+
+
+<p>are identical &hellip;</p>
+
+<h2>We have Erlang running on EVM, why we need another language Elixir</h2>
+
+<p>We say Erlang here is meant to be the language <em>Erlang</em>, which syntax
+derived from Prolog and was heavily influenced by smalltalk, CSP.</p>
+
+<p>Elixir combines Erlang and Ruby, has Erlang&rsquo;s</p>
+
+<ul>
+<li>patten matching</li>
+<li>higher order functions</li>
+</ul>
+
+
+<p>Ruby&rsquo;s</p>
+
+<ul>
+<li>sigils</li>
+<li>shortcut syntax</li>
+</ul>
+
+
+<p>and it&rsquo;s own(or comes from others)</p>
+
+<ul>
+<li>pipe operator</li>
+<li>macro quote and unquote operators</li>
+</ul>
+
+
+<h2>Elixir underlying AST is kind of different from Erlang one</h2>
+
+<p>Elixir also brings a new underlying AST to the table, instead of the Erlang
+AST where everything form has its own representation, the Elixir AST has a far
+more uniform representation, which makes meta-programming far easier.</p>
+
+<h2>Elixir has mutable variables</h2>
+
+<p> Elixir does not have mutable state as you usually find in imperative
+ programming. Lists, tuples and all other data types are immutable. The
+ mutable state you get in Elixir is exactly the same you get in Erlang,
+ nothing less, nothing more.</p>
+
+<h2>Rebinding variables makes Elixir unsafe? It could have race conditions?</h2>
+
+<p> No, Elixir assignments are compiled down to Static Single Assignment. More
+ importantly, you also can&rsquo;t change a function&rsquo;s binding after the function is created.</p>
+
+<blockquote><p>Elixir breaks a few Erlang holy cows &ndash; variables can be re-bound in sequences. This is actually ok, the resulting forms can still be normalized into a static-single-assignment (SSA) form. While this is OK in sequences it would totally verboten-nicht-do-not-do-it in loop constructs. But this is fine, Elixir has no loops, only recursion. Actually it could not have loops with mutable variables since this would be impossible to compile into anything remotely sensible in the EVM. SSA variables in sequences are fine, the EVM knows how to optimize these. Loops no, so Elixir doesn’t go there. It would even boil nicely down into LLVM assembler &ndash; but that’s another story too long to tell here.  &mdash; Joe</p></blockquote>
+
+<h2>What&rsquo;s &ldquo;defmacro quote and unquote&rdquo;</h2>
+
+<p>This is parse transforms done right. The joy is that you don’t need to know the abstract syntax. Quote and unquote do the magic for you.</p>
+
+<h2>Elixir&rsquo;s Closures done right VS Javascript&rsquo;s closure</h2>
+
+<p>Outter variable won&rsquo;t break the closure, so it would always return the same
+result for the same closure passsin the same parameters.</p>
+
+<h2>What&rsquo;s Static Single Assignment</h2>
+
+<h2>Why are there two kinds of functions in Elixir</h2>
+
+<ol>
+<li>functions defined in module with <code>def</code></li>
+<li>anonymous functions defined with <code>fn</code>, and call with dot+name</li>
+</ol>
+
+
+<p>Refer to <a href="http://stackoverflow.com/questions/18011784/why-are-there-two-kinds-of-functions-in-elixir">Stackoverflow</a></p>
+
+<ul>
+<li><p>functions in Elixir are identified by name and arity, that&rsquo;s
+why we just use <code>name/arity</code> when using high order functions</p></li>
+<li><p><code>fn</code> is a closure in Elixir, similar to a <code>lambda</code> in Ruby.
+we can&rsquo;t define a closure with different number of arguments.</p></li>
+<li><p><code>def</code> is named function, which will create a new variable scope
+we can&rsquo;t access the outer scoped variable like Closure</p></li>
+<li><p>Use <code>&amp;</code>, we could retrive the named function as an anonymous function</p></li>
+</ul>
+
+
+<blockquote><p>This is also why Elixir uses a dot for calling anonymous functions. Since you can&rsquo;t simply pass hello around as a function, instead you need to explicitly capture it, there is a natural distinction in between them, and a explicit syntax for calling each makes everything a bit more explicit.</p>
+
+<p>It is not an implementation constraint in the sense that it could also work as f() (without the dot).</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mix introduction]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/"/>
+    <updated>2014-01-25T11:18:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/25/mix-introduction</id>
+    <content type="html"><![CDATA[<p>When we &hellip;, we can see &hellip; after we pull code from dynamo repo</p>
+
+<p>Get Dynamo dependencies and run tests with:
+  <code>MIX_ENV=test mix do deps.get, test</code></p>
+
+<p>Running this command, you will fetch dependencies, compile, and then test the
+framework, make sure you are on the right version with Elixir and Dynamo.</p>
+
+<p>Then runing <code>mix dynamo ../mynamo</code>, Mix will create a directory named mynamo with few files in it:</p>
+
+<p><code>
+➜  dynamo git:(bf86566) ✗ mix dynamo ../mynamo
+* creating README.md
+* creating .gitignore
+* creating mix.lock
+  ...
+</code></p>
+
+<p>Note that I can use <code>mix</code> here because <code>mix</code> is an Elixir executable.
+You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> executable&rsquo;s option</p>
+
+<p><code>➜ bin/elixir -S mix new ./my_project</code></p>
+
+<p><code>bin/elixir</code></p>
+
+<p>So let&rsquo;s see what Mix is:</p>
+
+<h2>MIX &ndash; A BUILD TOOL FOR ELIXIR</h2>
+
+<ol>
+<li><a href="http://elixir-lang.org/getting_started/mix/1.html">Introduction to Mix</a></li>
+<li><a href="">Building OTP apps with Mix</a></li>
+<li><a href="">Creating custom Mix tasks</a></li>
+</ol>
+
+
+<p>Mix is a build tool that provides</p>
+
+<ul>
+<li>creating</li>
+<li>compiling</li>
+<li>testing</li>
+<li>releasing (coming soon&hellip;)</li>
+</ul>
+
+
+<p>which ships with every Elixir release.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Dynamo] Code organization in environments]]></title>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: dynamo - zhenwusw</title>
+  <title>mix introduction - zhenwusw</title>
   <meta name="author" content="zhen">
 
   
-  <meta name="description" content="Category: dynamo">
+  <meta name="description" content="Tweet Mix Introduction Jan 25th, 2014 When we &hellip;, we can see &hellip; after we pull code from dynamo repo Get Dynamo dependencies and run &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhenwusw.github.ioblog/categories/dynamo/">
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -84,10 +84,8 @@
 
   </header>
   <section id="main">
-    <div>
-<article role="article" class="post">
-  
-    <div class="sharing-box">
+    <article class="post">
+  <div class="sharing-box">
   
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
   
@@ -96,51 +94,87 @@
 </div>
 
   
-  
   <header>
-    <h2 class="entry-title">Category: Dynamo</h2>
+    
+      <h2 class="entry-title">Mix Introduction</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-25T11:18:00+08:00" pubdate data-updated="true">Jan 25<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<p>When we &hellip;, we can see &hellip; after we pull code from dynamo repo</p>
 
-  
-  <h2>2014</h2>
+<p>Get Dynamo dependencies and run tests with:
+  <code>MIX_ENV=test mix do deps.get, test</code></p>
 
-<article>
-  
-<h1><a href="/blog/2014/01/25/mix-introduction/">mix introduction</a></h1>
-<time datetime="2014-01-25T11:18:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>25</span> <span class='year'>2014</span></time>
+<p>Running this command, you will fetch dependencies, compile, and then test the
+framework, make sure you are on the right version with Elixir and Dynamo.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/dynamo/'>dynamo</a>, <a class='category' href='/blog/categories/elixir/'>elixir</a></span>
-</footer>
+<p>Then runing <code>mix dynamo ../mynamo</code>, Mix will create a directory named mynamo with few files in it:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>➜  dynamo git:(bf86566) ✗ mix dynamo ../mynamo
+</span><span class='line'>* creating README.md
+</span><span class='line'>* creating .gitignore
+</span><span class='line'>* creating mix.lock
+</span><span class='line'>  ...</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Note that I can use <code>mix</code> here because <code>mix</code> is an Elixir executable.
+You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> executable&rsquo;s option</p>
+
+<p><code>➜ bin/elixir -S mix new ./my_project</code></p>
+
+<p><code>bin/elixir</code></p>
+
+<p>So let&rsquo;s see what Mix is:</p>
+
+<h2>MIX &ndash; A BUILD TOOL FOR ELIXIR</h2>
+
+<ol>
+<li><a href="http://elixir-lang.org/getting_started/mix/1.html">Introduction to Mix</a></li>
+<li><a href="">Building OTP apps with Mix</a></li>
+<li><a href="">Creating custom Mix tasks</a></li>
+</ol>
+
+
+<p>Mix is a build tool that provides</p>
+
+<ul>
+<li>creating</li>
+<li>compiling</li>
+<li>testing</li>
+<li>releasing (coming soon&hellip;)</li>
+</ul>
+
+
+<p>which ships with every Elixir release.</p>
+
 
 
 </article>
 
-
-
-<article>
-  
-<h1><a href="/blog/2014/01/12/code-organization-in-environments/">[Dynamo] Code organization in environments</a></h1>
-<time datetime="2014-01-12T11:07:00+08:00" pubdate><span class='month'>Jan</span> <span class='day'>12</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/dynamo/'>dynamo</a>, <a class='category' href='/blog/categories/elixir/'>elixir</a></span>
-</footer>
-
-
-</article>
-
-</div>
-
-  
-</article>
-
-</div>
 
     <nav role="navigation" id="pagination">
 
@@ -149,19 +183,6 @@
   
 
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'zhenwusw-blog';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
