@@ -9,7 +9,7 @@
   <meta name="author" content="zhen">
 
   
-  <meta name="description" content="Tweet Elixir Notes Jan 26th, 2014 What&rsquo;s different between Elixir and Erlang The funny thing is that Erlang and Elixir are the same thing &hellip;">
+  <meta name="description" content="Tweet Plug Jan 27th, 2014 what&rsquo;s plug in Elixir A plug is any function* that receives a connection and a set of options as arguments and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +90,120 @@
     <article class="post">
       <div class="sharing-box">
   
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io/blog/2014/01/27/plug/" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io/blog/2014/01/27/plug/" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+      
+  <header>
+    
+      <h2 class="entry-title">
+        
+        <a href="/blog/2014/01/27/plug/">Plug</a>
+        
+      </h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-27T20:26:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <h2>what&rsquo;s plug in Elixir</h2>
+
+<blockquote><p>A plug is <strong>any function</strong>* that receives a connection and a set of options as arguments and returns a tuple in the format { tag :: atom, conn :: Plug.Conn.t }</p></blockquote>
+
+<p>so it consists of three parts:</p>
+
+<ul>
+<li>A Elixir function</li>
+<li>Receives connection and options</li>
+<li>Return a tuple { tag :: atom, conn :: Plug.Conn }</li>
+</ul>
+
+
+<p>If you comes from Ruby you&rsquo;ll find it similiar to [Rack][rack-link]</p>
+
+<p>&hellip;</p>
+
+<h2>First try of Plug</h2>
+
+<p>Plug let us start with a single file Plug application:</p>
+
+<p>(actually not so <em>single</em> because you need to put in under the <em>plug</em>
+directory for now since plug is naturally a <code>mix</code> project)</p>
+
+<figure class='code'><figcaption><span>first_plug.exs</span><a href='/downloads/code/elixir/first_plug.exs' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='code'><pre><code class='exs'><span class='line'><span class="k">defmodule</span> <span class="no">FirstPlug</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span>
+</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">put_resp_content_type</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
+</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">send_resp</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="n">conn</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Running FirstPlug with Cowboy on http://localhost:4000&quot;</span>
+</span><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">http</span> <span class="no">FirstPlug</span><span class="p">,</span> <span class="p">[]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Run: <code>mix run --no-halt first_plug.exs</code> then open <code>http://localhost:4000</code>
+in your browser, you will see the &ldquo;Hello world&rdquo; text.</p>
+
+<h2>Details</h2>
+
+<figure class='code'><div class='highlight'><table><td class='code'><pre><code class='elixir'><span class='line'>  <span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='code'><pre><code class='elixir'><span class='line'><span class="nv">@doc</span> <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">  Assigns a new key and value in the connection.</span>
+</span><span class='line'>
+</span><span class='line'><span class="sd">  ## Examples</span>
+</span><span class='line'>
+</span><span class='line'><span class="sd">      iex&gt; conn.assigns[:hello]</span>
+</span><span class='line'><span class="sd">      nil</span>
+</span><span class='line'><span class="sd">      iex&gt; conn = assign(conn, :hello, :world)</span>
+</span><span class='line'><span class="sd">      iex&gt; conn.assigns[:hello]</span>
+</span><span class='line'><span class="sd">      :world</span>
+</span><span class='line'>
+</span><span class='line'><span class="sd">  &quot;&quot;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+  
+  
+
+
+    </article>
+  
+  
+    <article class="post">
+      <div class="sharing-box">
+  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io/blog/2014/01/26/elixir-notes/" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io/blog/2014/01/26/elixir-notes/" data-size="large">Tweet</a>
   
   
@@ -126,7 +240,12 @@
   </header>
 
 
-  <h2>What&rsquo;s different between Elixir and Erlang</h2>
+  <h2>Why Mix needs to get dependencies for everty project</h2>
+
+<pre><code>hehe
+</code></pre>
+
+<h2>What&rsquo;s different between Elixir and Erlang</h2>
 
 <blockquote><p>The funny thing is that Erlang and Elixir are the same thing under the
   surface. They “feel” the same to me. &mdash; Joe</p></blockquote>
