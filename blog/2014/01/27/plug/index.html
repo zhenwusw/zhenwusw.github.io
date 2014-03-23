@@ -57,14 +57,17 @@
   </li>
 
 
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
 
   <li class="link">
     <a href="http://about.me/zhenwusw/">about</a>
   </li>
 
-<li class="link">
+<!-- <li class="link">
   <a href="/learning-dynamo">Learning Dynamo</a>
-</li>
+</li> -->
 
   <li class="link">
     <a href="http://twitter.com/zhenwusw/">twitter</a>
@@ -119,7 +122,7 @@
   </header>
 
 
-<h2>what&rsquo;s plug in Elixir</h2>
+<h1>what&rsquo;s plug in Elixir</h1>
 
 <blockquote><p>A plug is <strong>any function</strong>* that receives a connection and a set of options as arguments and returns a tuple in the format { tag :: atom, conn :: Plug.Conn.t }</p></blockquote>
 
@@ -136,7 +139,7 @@
 
 <p>&hellip;</p>
 
-<h2>First try of Plug</h2>
+<h1>First try of Plug</h1>
 
 <p>Plug let us start with a single file Plug application:</p>
 
@@ -159,32 +162,87 @@ directory for now since plug is naturally a <code>mix</code> project)</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Run: <code>mix run --no-halt first_plug.exs</code> then open <code>http://localhost:4000</code>
-in your browser, you will see the &ldquo;Hello world&rdquo; text.</p>
+<p>Run: <code>mix run --no-halt first_plug.exs</code></p>
 
-<h2>Details</h2>
+<p>then navigate to <code>http://localhost:4000</code> in your any of browser</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='code'><pre><code class='elixir'><span class='line'>  <span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
+<h2>Adapters</h2>
+
+<p>Plug aims to be a common pattern or a bridge attaching the Webservers and applications in Elixir world. And here we would like to see how it connects
+Cowboy and our single FirstPlug.</p>
+
+<p><code>Plug.Adapters.Cowboy.http FirstPlug, []</code></p>
+
+<p>The first argument can be any module which contains <code>call</code> method, we&rsquo;ll deep
+into the <code>call</code> method lately.</p>
+
+<h2>plug router</h2>
+
+<p>The router is a plug, which means it can be invoked as:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
+<p><code>Plug.Router</code> compiles all of your routes into a single function and relies on
+the EVM to optimize the underlying routes into a tree lookup instead of a
+linear lookup that would instead match route-per-route. That means route lookup
+are extremly fast in Plug!</p>
 
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='code'><pre><code class='elixir'><span class='line'><span class="nv">@doc</span> <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">  Assigns a new key and value in the connection.</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">quote</span> <span class="ss">location:</span> <span class="ss">:keep</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="kn">import</span> <span class="kn">unquote</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="sd">  ## Examples</span>
+</span><span class='line'>    <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">      </span><span class="n">dispatch</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">path_info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="sd">      iex&gt; conn.assigns[:hello]</span>
-</span><span class='line'><span class="sd">      nil</span>
-</span><span class='line'><span class="sd">      iex&gt; conn = assign(conn, :hello, :world)</span>
-</span><span class='line'><span class="sd">      iex&gt; conn.assigns[:hello]</span>
-</span><span class='line'><span class="sd">      :world</span>
-</span><span class='line'>
-</span><span class='line'><span class="sd">  &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">defoverridable</span> <span class="p">[</span><span class="ss">call:</span> <span class="m">2</span><span class="p">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
+<p><code>defoverridable</code> &hellip;</p>
+
+<h2>Plug test</h2>
+
+<h2>plug endpoint</h2>
+
+<p>The plug endpoint here is the <code>call</code> method which receives two parameters:
+<code>Plug.Conn</code> record and Keyword options. Returns can be any atom, with two values have specific meaning to plug:</p>
+
+<ul>
+<li><code>ok</code> &ndash; pass the connection to the next plug in the stack</li>
+<li><code>halt</code> &ndash; halts the current and all other stacks</li>
+</ul>
+
+
+<p>Any other values means the connection should be halted &hellip;</p>
+
+<h2></h2>
+
+<p>Inside <code>Plug.Connection</code> module, we can see the <code>Plug.Conn</code> was defined with</p>
+
+<ul>
+<li>request fields</li>
+<li>response fields</li>
+<li><p>connection fields</p></li>
+<li><p>fetchable fields</p></li>
+<li>unfetchable fields</li>
+</ul>
 
 
 

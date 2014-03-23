@@ -4,7 +4,7 @@
   <title><![CDATA[zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-01-27T21:37:38+08:00</updated>
+  <updated>2014-03-23T12:16:42+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -14,11 +14,230 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Ultimate sales machine]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/02/22/ultimate-sales-machine/"/>
+    <updated>2014-02-22T21:53:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/02/22/ultimate-sales-machine</id>
+    <content type="html"><![CDATA[<h2>6 steps for Time Management</h2>
+
+<ol>
+<li>Touch it once</li>
+<li>Making daily lists of the six most important tasks to accomplish</li>
+<li>Plan how long each task will be</li>
+<li>Assign time slots for accomplishing each task</li>
+<li>Focus on the difficult projects first</li>
+<li>Ask youself, &ldquo;Will it hurt me to throw this away?&rdquo;</li>
+</ol>
+
+
+<h2>Not so many &ldquo;got-a-minute&rdquo; meetings,</h2>
+
+<blockquote><p>If your computer signals when you have an email, <em>do not</em> go directly to
+read it and answer it at the moment</p>
+
+<p>concentration is like a muscle and it strengthens as you concentrate more</p></blockquote>
+
+<h2>Communication levels</h2>
+
+<ul>
+<li>Trello: schedule features</li>
+<li>Basecamp + Qortex: client supports</li>
+<li>Lighthouse: ticket management</li>
+<li>Github: code management</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[xxxxx]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/02/04/xxxxx/"/>
+    <updated>2014-02-04T00:26:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/02/04/xxxxx</id>
+    <content type="html"><![CDATA[<p>资金走向:</p>
+
+<ol>
+<li><p>不同阶层的可支配资金 &ndash;> 国有银行 &ndash;> 开发商小额贷款建房 &ndash;> 用建好的高价房抵押高额贷款
+&ndash;> 高额建房 (导致房价不断虚高才能购房者填补漏洞)</p></li>
+<li><p>银行损失的资金 &ndash;> 流入资本市场 &ndash;> 白领阶层的购买力 &ndash;> 舆论烘托 &ndash;> 剩余劳动力填补资金链</p></li>
+<li><p>靠 1 &ndash;> 2 &ndash;> 1 形成闭环，政策在其中归导该环，不至于偏离轨道</p></li>
+</ol>
+
+
+<h2>房价为什么会涨</h2>
+
+<ul>
+<li><p>在中国，阶层是存在的，不同阶层利益纠纷是存在的。发展中的中国通过通货膨胀和自我改革来维持
+可观的GDP, 而每次改革的阵痛不可避免的由下一级的阶层来买单。</p></li>
+<li><p>体制的僵化跟不上经济的快速发展，垄断经营使矛盾越加激烈。政府通过自我改良不断减少矛盾，但
+这注定不是一个简单的过程，既得利益者始终掌握着主要资源，不断收刮剩余价值。</p></li>
+<li><p>银行竞争下的贷款开放，国有银行却独立运营，开发商通过 贷款 &ndash;> 高房价 &ndash;> 再贷款 &ndash;> 再高房价
+的恶性循环把痛苦转嫁给民众或是贷款银行(最终还是普通民众的钱)</p></li>
+<li><p>中国特色的按揭, 按揭审核宽松是政府为了弥补资金的空洞，补充白领阶层的购买力。</p></li>
+</ul>
+
+
+<h2>房贷泡沫如何导致白领破产</h2>
+
+<ul>
+<li><p>国内的白领相比国外普遍水平不高，但为了让这一阶层具有一定的购买力，房产商的既得资金会部分
+转移到这些领域，致使这领域的白领能够负得起首付，还的起按揭。但全民生产力不提高，却以房产
+剥削来的资金并通过资金转移来带动 GDP 增长。</p></li>
+<li><p>那些年纪轻轻的小白领们，找工作最好把薪水要高一点，别要医疗保险和啥保险，自己把钱存起来最
+保险。</p></li>
+<li><p>你为什么要买车: 因为有时候我觉得去超市买点东西方便，你说这个距离吧，走去不合适，打的不好打。</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[elixir macro]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/29/elixir-macro/"/>
+    <updated>2014-01-29T23:13:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/29/elixir-macro</id>
+    <content type="html"><![CDATA[<h1>Homoiconic</h1>
+
+<blockquote><p>The property of code being data and data being code is called homoiconicity. The representation of a program is also a data structure in a primitive type of the language.</p></blockquote>
+
+<ul>
+<li>function that takes data as arguments and returns data</li>
+<li>data can b code representation</li>
+<li>it&rsquo;s called at compile time</li>
+<li>code what it&rsquo;s invoked will be replaced</li>
+<li>powerful, performant way to build DSLs</li>
+<li>Achieve many of the same effects as Metaprogramming but at compile time:
+<strong> Allow us to be lazy about evaluation
+</strong> function calls: arguments are always resolved before they are passed to them</li>
+</ul>
+
+
+<h1>Abstract Syntax Trees(AST)</h1>
+
+<blockquote><p>AST is a tree representation of the syntactical structure of source code. It is referred to as abstract since it does not exactly represent every detail that appears in the real syntax. Since the representation is now focused on the machine and not humans, there may be more optimal modeling that lose some of the details of the source.</p></blockquote>
+
+<ul>
+<li><code>quote</code> provides functionality to turn code into AST</li>
+<li><code>unquote</code> injecte variable values into the AST</li>
+<li><code>unquote_splicing</code> turns a <strong>list</strong>* of arguments into <strong>comma</strong> delimited arguments<br/>
+in the code</li>
+<li>Macro Escaping:</li>
+<li>Eval quoted: add a runtime aspect to our compile time macro though with some limited scope</li>
+<li>hygiene: it&rsquo;s about scope of your variables</li>
+<li>unquoting outside of macros: The bind_quoted will disable unquote and thats exactly what we want, it’s clear that unquote is not part of the macro.</li>
+</ul>
+
+
+<p>====================================</p>
+
+<p>What&rsquo;s Macro, I think is the code or expression that can be excute during the
+compilation time &hellip;</p>
+
+<blockquote><p>Quote is commonly used with macro for <em>code generation</em></p>
+
+<p>Gets the representation of any expression.</p>
+
+<p><strong>Any</strong>* Elixir code can be represented using Elixir data structures
+With some code returns themselves: Atoms, Integers, Floats, Lists, Strings,
+Two element&rsquo;s tuple</p>
+
+<p>building code of Elixir macro</p></blockquote>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">Math</span> <span class="k">do</span>
+</span><span class='line'><span class="k">   defmacro</span> <span class="n">squared</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">     </span><span class="kn">quote</span> <span class="k">do</span>
+</span><span class='line'><span class="k">       </span><span class="kn">unquote</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="kn">import</span> <span class="no">Math</span>
+</span><span class='line'><span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Got squared </span><span class="si">#{</span><span class="n">squared</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At compilation time, <code>squared(5)</code> => <code>5 * 5</code></p>
+
+<blockquote><p><strong>not unquote the same value more than once</strong></p>
+
+<p>Elixir macros are hygienic, variables defining inside macros won&rsquo;t leak
+to user context. You can break this by <code>var!</code></p>
+
+<p>Note that you cannot even access variables defined in the same module unless
+you explicitly give it a context:</p>
+
+<p>Aliases inside quote are hygienic by default</p>
+
+<p>When defining functions via macros, developers have the option of choosing if
+runtime errors will be reported from the caller or from inside the quote.</p>
+
+<p>Binding and unquote fragments</p></blockquote>
+
+<ul>
+<li><p>Unquote fragments provide an easy way to generate functions on the
+fly</p></li>
+<li><p>This is because the macro is expecting its arguments to be a keyword list at
+<strong>compilation</strong> time.</p>
+
+<p>┃ kv = [foo: 1, bar: 2]
+┃ defkv kv</p></li>
+</ul>
+
+
+<p>The code will fail because we are passing the representation of variable <code>kv</code></p>
+
+<blockquote><p>In practice, we want to avoid doing work at compilation time as much as
+possible.</p>
+
+<p>unquote fragment vs regular unquote</p>
+
+<p>By using :bind_quoted, we can automatically disable unquoting while still
+injecting the desired variables into the tree:</p>
+
+<p>In fact, the :bind_quoted option is recommended every time one desires to
+inject a value into the quote.</p></blockquote>
+
+<p>Options:</p>
+
+<ul>
+<li>unquote</li>
+<li>location
+When set to :keep, keeps the current line and file from quote.
+Read the Stacktrace information section below for more</li>
+<li>hygiene</li>
+<li>context</li>
+<li>bind_quoted</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<ul>
+<li></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[plug]]></title>
     <link href="http://zhenwusw.github.io/blog/2014/01/27/plug/"/>
     <updated>2014-01-27T20:26:00+08:00</updated>
     <id>http://zhenwusw.github.io/blog/2014/01/27/plug</id>
-    <content type="html"><![CDATA[<h2>what&rsquo;s plug in Elixir</h2>
+    <content type="html"><![CDATA[<h1>what&rsquo;s plug in Elixir</h1>
 
 <blockquote><p>A plug is <strong>any function</strong>* that receives a connection and a set of options as arguments and returns a tuple in the format { tag :: atom, conn :: Plug.Conn.t }</p></blockquote>
 
@@ -35,7 +254,7 @@
 
 <p>&hellip;</p>
 
-<h2>First try of Plug</h2>
+<h1>First try of Plug</h1>
 
 <p>Plug let us start with a single file Plug application:</p>
 
@@ -58,32 +277,87 @@ directory for now since plug is naturally a <code>mix</code> project)</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Run: <code>mix run --no-halt first_plug.exs</code> then open <code>http://localhost:4000</code>
-in your browser, you will see the &ldquo;Hello world&rdquo; text.</p>
+<p>Run: <code>mix run --no-halt first_plug.exs</code></p>
 
-<h2>Details</h2>
+<p>then navigate to <code>http://localhost:4000</code> in your any of browser</p>
 
-<figure class='code'><div class='highlight'><table><td class='code'><pre><code class='elixir'><span class='line'>  <span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
+<h2>Adapters</h2>
+
+<p>Plug aims to be a common pattern or a bridge attaching the Webservers and applications in Elixir world. And here we would like to see how it connects
+Cowboy and our single FirstPlug.</p>
+
+<p><code>Plug.Adapters.Cowboy.http FirstPlug, []</code></p>
+
+<p>The first argument can be any module which contains <code>call</code> method, we&rsquo;ll deep
+into the <code>call</code> method lately.</p>
+
+<h2>plug router</h2>
+
+<p>The router is a plug, which means it can be invoked as:</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p><code>Plug.Router</code> compiles all of your routes into a single function and relies on
+the EVM to optimize the underlying routes into a tree lookup instead of a
+linear lookup that would instead match route-per-route. That means route lookup
+are extremly fast in Plug!</p>
 
-
-<figure class='code'><div class='highlight'><table><td class='code'><pre><code class='elixir'><span class='line'><span class="nv">@doc</span> <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">  Assigns a new key and value in the connection.</span>
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">quote</span> <span class="ss">location:</span> <span class="ss">:keep</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="kn">import</span> <span class="kn">unquote</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="sd">  ## Examples</span>
+</span><span class='line'>    <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">      </span><span class="n">dispatch</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">path_info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="sd">      iex&gt; conn.assigns[:hello]</span>
-</span><span class='line'><span class="sd">      nil</span>
-</span><span class='line'><span class="sd">      iex&gt; conn = assign(conn, :hello, :world)</span>
-</span><span class='line'><span class="sd">      iex&gt; conn.assigns[:hello]</span>
-</span><span class='line'><span class="sd">      :world</span>
-</span><span class='line'>
-</span><span class='line'><span class="sd">  &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">defoverridable</span> <span class="p">[</span><span class="ss">call:</span> <span class="m">2</span><span class="p">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p><code>defoverridable</code> &hellip;</p>
+
+<h2>Plug test</h2>
+
+<h2>plug endpoint</h2>
+
+<p>The plug endpoint here is the <code>call</code> method which receives two parameters:
+<code>Plug.Conn</code> record and Keyword options. Returns can be any atom, with two values have specific meaning to plug:</p>
+
+<ul>
+<li><code>ok</code> &ndash; pass the connection to the next plug in the stack</li>
+<li><code>halt</code> &ndash; halts the current and all other stacks</li>
+</ul>
+
+
+<p>Any other values means the connection should be halted &hellip;</p>
+
+<h2></h2>
+
+<p>Inside <code>Plug.Connection</code> module, we can see the <code>Plug.Conn</code> was defined with</p>
+
+<ul>
+<li>request fields</li>
+<li>response fields</li>
+<li><p>connection fields</p></li>
+<li><p>fetchable fields</p></li>
+<li>unfetchable fields</li>
+</ul>
 
 ]]></content>
   </entry>
@@ -97,6 +371,12 @@ in your browser, you will see the &ldquo;Hello world&rdquo; text.</p>
 
 <pre><code>hehe
 </code></pre>
+
+<h2>What happens when runnign <code>elixir file.ex</code></h2>
+
+<p>   &hellip;</p>
+
+<h2></h2>
 
 <h2>What&rsquo;s different between Elixir and Erlang</h2>
 
@@ -252,6 +532,105 @@ node.</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[stream and enum]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/26/stream-and-enum/"/>
+    <updated>2014-01-26T09:51:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/26/stream-and-enum</id>
+    <content type="html"><![CDATA[<h1>enumerator</h1>
+
+<ul>
+<li>data structures like List, String</li>
+<li>file</li>
+</ul>
+
+
+<blockquote><p>Just calling a function isn&rsquo;t all that useful for most tasks as there&rsquo;d be no way to remember previous lines, so some accumulator value is passed to the function and a new accumulator is returned by it.</p></blockquote>
+
+<p><a href="http://elixir-lang.org/blog/2013/12/11/elixir-s-new-continuable-enumerators/">http://elixir-lang.org/blog/2013/12/11/elixir-s-new-continuable-enumerators/</a></p>
+
+<p>Just like ActiveRelation in Rails, Elixir make composable, lazy enumeration as streams.</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="m">1</span><span class="o">..</span><span class="m">3</span> <span class="o">|&gt;</span>
+</span><span class='line'>  <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span><span class='line'>  <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="o">*</span> <span class="m">2</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span><span class='line'>  <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+</span><span class='line'><span class="m">1</span>
+</span><span class='line'><span class="m">2</span>
+</span><span class='line'><span class="m">3</span>
+</span><span class='line'><span class="m">2</span>
+</span><span class='line'><span class="m">4</span>
+</span><span class='line'><span class="m">6</span>
+</span><span class='line'><span class="c1">#=&gt; [2,4,6]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="n">stream</span> <span class="o">=</span> <span class="m">1</span><span class="o">..</span><span class="m">3</span> <span class="o">|&gt;</span>
+</span><span class='line'>  <span class="no">Stream</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span><span class='line'>  <span class="no">Stream</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="o">*</span> <span class="m">2</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span><span class='line'>  <span class="no">Stream</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+</span><span class='line'><span class="no">Enum</span><span class="o">.</span><span class="n">to_list</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+</span><span class='line'><span class="m">1</span>
+</span><span class='line'><span class="m">2</span>
+</span><span class='line'><span class="m">2</span>
+</span><span class='line'><span class="m">4</span>
+</span><span class='line'><span class="m">3</span>
+</span><span class='line'><span class="m">6</span>
+</span><span class='line'><span class="c1">#=&gt; [2,4,6]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>Stream.transform</code> &ndash; basic tool</p>
+
+<p><code>Stream.unfold</code></p>
+
+<p><code>Stream.zip</code></p>
+
+<p><code>Stream.map</code></p>
+
+<p><code>Stream.drop</code></p>
+
+<p><code>Stream.each</code></p>
+
+<p><code>Stream.each</code></p>
+
+<p><code>Stream.after/1</code></p>
+
+<p><code>Stream.chunk/4</code> &ndash; parameter step is kind of confusing</p>
+
+<p><code>Stream.repeatedly</code>  vs <code>Stream.iterate</code> vs <code>Stream.resource</code></p>
+
+<p><code>IO.stream/1</code> &ndash; Streams input lines, one by one;</p>
+
+<p><code>URI.query_decoder/1</code> &ndash; Decodes a query string, pair by pair;</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[mix introduction]]></title>
     <link href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/"/>
     <updated>2014-01-25T11:18:00+08:00</updated>
@@ -307,6 +686,65 @@ You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> ex
 
 
 <p>which ships with every Elixir release.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[untitled]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/20/untitled/"/>
+    <updated>2014-01-20T22:05:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/20/untitled</id>
+    <content type="html"><![CDATA[<h2>第一章</h2>
+
+<ul>
+<li><p>信息增长的速度极快，但大部分信息都只是噪声, 噪声增长的速度比信号更快。</p></li>
+<li><p>预测是人们共同的事业，而不仅仅是那些顶级专家的职责。</p></li>
+<li><p>我们永远都不可能做出完全客观的预测，因为这些预测都会带有主观色彩。</p></li>
+<li><p>专注与某一问题的研究总会得到比概括研究更深刻，更独到的见解。</p></li>
+<li><p>充分理解不可测行和不确定性，理解如何吧信息转变为知识。</p></li>
+</ul>
+
+
+<blockquote><p>在信息时代我们面临的一个重大挑战，就是全球的只是总量在增加，而我们世纪掌握的知识和
+  自认为掌握的知识之间的鸿沟却越来越宽。</p>
+
+<p>金融危机以及其它大多数失败的预测都源于一种盲目的自信。他们用精确的预测冒充准确的预测。</p></blockquote>
+
+<h2>第二章</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[how ruby excute your code]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/19/how-ruby-excute-your-code/"/>
+    <updated>2014-01-19T11:09:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/19/how-ruby-excute-your-code</id>
+    <content type="html"><![CDATA[<blockquote><p>“YARV is not just a stack machine—it’s a double-stack machine!”</p></blockquote>
+
+<p>YARV has its own stack pointer and a program counter &mdash; that is
+like your computer&rsquo;s actual microprocessor.</p>
+
+<blockquote><p>The CFP pointer indicates the current frame pointer. Each stack frame in your Ruby program stack contains, in turn, a different value for the self, PC, and SP registers,</p></blockquote>
+
+<p>YARV instruction of <code>puts 2+2</code></p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>trace
+</span><span class='line'>putself
+</span><span class='line'>putobject     2
+</span><span class='line'>putobject     2
+</span><span class='line'>opt_plus
+</span><span class='line'>opt_send_simple      &lt;&lt;callinfo!mid:puts....
+</span><span class='line'>leave</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby uses the <code>trace</code> to support the <code>set_trace_func</code> feature.</p>
 ]]></content>
   </entry>
   
@@ -419,6 +857,42 @@ second to the inner block scope.</p>
 <p>Here we can see the <code>local table</code>, once Ruby&rsquo;s ompiler runs, the
 information about the block parameter is copied out of the AST
 and into another data structure called the <code>locale table</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[compilation in Ruby]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/18/compilation-in-ruby/"/>
+    <updated>2014-01-18T09:46:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/18/compilation-in-ruby</id>
+    <content type="html"><![CDATA[<blockquote><p>You may think of Ruby as a dynamic scripting language, but, in
+  fact, it uses a compiler just like C, Java, and myan other
+  programming laungages. Rubys&#8217; compiler works b iterating through
+  the AST produced by the tokenizing and parsing processes,
+  generating a series of bytescode instructions along the way.</p>
+
+<p>The code Ruby actually runs looks nothing like your original code</p></blockquote>
+
+<p>..</p>
+
+<blockquote><p>Starting with version 1.9, Ruby compiles your code before executing it.</p></blockquote>
+
+<p>..</p>
+
+<blockquote><p>It translates your Ruby code into another language that Ruby&rsquo;s VM understands
+The only difference is that you don&rsquo;t use Ruby&rsquo;s compiler directly</p></blockquote>
+
+<p>..</p>
+
+<p>Now the process becomes: tokenizing &ndash;> parsing &ndash;> compiling</p>
+
+<h2>The only differences between YARV and the JVM are the following</h2>
+
+<ul>
+<li><p>Ruby doesn&rsquo;t expose the commpiler to you as a separate tool.</p></li>
+<li><p>Ruby never compiles your Ruby code all the way to machine language</p></li>
+</ul>
+
 ]]></content>
   </entry>
   
@@ -548,6 +1022,39 @@ and into another data structure called the <code>locale table</code>.</p>
 
 
 <p>coming soon&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为什么中国有前途]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/11/why-china-is-promising/"/>
+    <updated>2014-01-11T23:09:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/11/why-china-is-promising</id>
+    <content type="html"><![CDATA[<p><a href="http://v.youku.com/v_show/id_XNjU5NTUxMzI4.html">优酷链接</a></p>
+
+<p>历史跨度:  16, 17 世纪 &ndash;> 18, 19 世纪 &ndash;> 20 世纪</p>
+
+<p>西班牙, 葡萄牙, 荷兰 &ndash;> 日不落帝国 &ndash;> 美利坚, 苏联 &ndash;> ???</p>
+
+<p>百万级人口          &ndash;> 千万级人口 &ndash;> 亿级人口</p>
+
+<p>创新 + 扩散 + 规模</p>
+
+<p>边缘国际 &ndash;> 中央国家</p>
+
+<p>中国, 印度</p>
+
+<p>战后美国维持近70年世界体系</p>
+
+<p>现有格局影响力</p>
+
+<p>如何看待 自由与民主</p>
+
+<p>铸币税</p>
+
+<p>每个美国老太太 背后都有个 中国老太太</p>
+
+<p>扩展成本 超过了 扩展收益</p>
 ]]></content>
   </entry>
   

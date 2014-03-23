@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dynamo | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/dynamo/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-01-27T21:37:38+08:00</updated>
+  <updated>2014-03-23T12:17:43+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -75,9 +75,9 @@ You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> ex
     <id>http://zhenwusw.github.io/blog/2014/01/12/code-organization-in-environments</id>
     <content type="html"><![CDATA[<p>First of all, Dynamo is a <a href="http://elixir-lang.org/getting_started/mix/1.html">mix</a> project, which shipping with environments independence naturally.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mix.exs </span></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='exs'><span class='line'><span class="ss">deps:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="c1"># dev, test, prod</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock mix.exs %}
+  deps: Mix.env # dev, test, prod
+{% endcodeblock %}</p>
 
 <p>coming soon&hellip;</p>
 ]]></content>

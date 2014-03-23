@@ -57,14 +57,17 @@
   </li>
 
 
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
 
   <li class="link">
     <a href="http://about.me/zhenwusw/">about</a>
   </li>
 
-<li class="link">
+<!-- <li class="link">
   <a href="/learning-dynamo">Learning Dynamo</a>
-</li>
+</li> -->
 
   <li class="link">
     <a href="http://twitter.com/zhenwusw/">twitter</a>
@@ -138,6 +141,49 @@ as and when they see fit.</p></blockquote>
 <li>Built-in JSON encoding.</li>
 <li>Database adapters.</li>
 </ul>
+
+
+<h2>Notes</h2>
+
+<h3>Ways to compile Elixir code</h3>
+
+<ul>
+<li><code>iex module</code></li>
+<li><code>elixirc module</code> then <code>iex</code></li>
+<li></li>
+</ul>
+
+
+<h3>How dynamo reload changed modules automatically</h3>
+
+<h3>How dynamo configurable</h3>
+
+<ul>
+<li>environments: dev, prod, test</li>
+</ul>
+
+
+<h3>What we have after <code>use Dynamo</code></h3>
+
+<ul>
+<li><p><code>use</code> is a Elixir macro, it will invoke the <code>__using__</code> of the using module</p></li>
+<li><p>starting dynamo application</p></li>
+<li><p>setup</p></li>
+<li>definitions</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="kn">quote</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">unquote</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
+</span><span class='line'>  <span class="kn">unquote</span><span class="p">(</span><span class="n">definitions</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
 
 
   

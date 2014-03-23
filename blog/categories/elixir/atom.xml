@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elixir | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/elixir/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-01-27T21:37:38+08:00</updated>
+  <updated>2014-03-23T12:17:43+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -14,11 +14,144 @@
 
   
   <entry>
+    <title type="html"><![CDATA[elixir macro]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/29/elixir-macro/"/>
+    <updated>2014-01-29T23:13:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/29/elixir-macro</id>
+    <content type="html"><![CDATA[<h1>Homoiconic</h1>
+
+<blockquote><p>The property of code being data and data being code is called homoiconicity. The representation of a program is also a data structure in a primitive type of the language.</p></blockquote>
+
+<ul>
+<li>function that takes data as arguments and returns data</li>
+<li>data can b code representation</li>
+<li>it&rsquo;s called at compile time</li>
+<li>code what it&rsquo;s invoked will be replaced</li>
+<li>powerful, performant way to build DSLs</li>
+<li>Achieve many of the same effects as Metaprogramming but at compile time:
+<strong> Allow us to be lazy about evaluation
+</strong> function calls: arguments are always resolved before they are passed to them</li>
+</ul>
+
+
+<h1>Abstract Syntax Trees(AST)</h1>
+
+<blockquote><p>AST is a tree representation of the syntactical structure of source code. It is referred to as abstract since it does not exactly represent every detail that appears in the real syntax. Since the representation is now focused on the machine and not humans, there may be more optimal modeling that lose some of the details of the source.</p></blockquote>
+
+<ul>
+<li><code>quote</code> provides functionality to turn code into AST</li>
+<li><code>unquote</code> injecte variable values into the AST</li>
+<li><code>unquote_splicing</code> turns a <strong>list</strong>* of arguments into <strong>comma</strong> delimited arguments<br/>
+in the code</li>
+<li>Macro Escaping:</li>
+<li>Eval quoted: add a runtime aspect to our compile time macro though with some limited scope</li>
+<li>hygiene: it&rsquo;s about scope of your variables</li>
+<li>unquoting outside of macros: The bind_quoted will disable unquote and thats exactly what we want, it’s clear that unquote is not part of the macro.</li>
+</ul>
+
+
+<p>====================================</p>
+
+<p>What&rsquo;s Macro, I think is the code or expression that can be excute during the
+compilation time &hellip;</p>
+
+<blockquote><p>Quote is commonly used with macro for <em>code generation</em></p>
+
+<p>Gets the representation of any expression.</p>
+
+<p><strong>Any</strong>* Elixir code can be represented using Elixir data structures
+With some code returns themselves: Atoms, Integers, Floats, Lists, Strings,
+Two element&rsquo;s tuple</p>
+
+<p>building code of Elixir macro</p></blockquote>
+
+<p>```elixir
+defmodule Math do
+   defmacro squared(x) do</p>
+
+<pre><code> quote do
+   unquote(x) * unquote(x)
+ end
+</code></pre>
+
+<p>   end
+ end
+```</p>
+
+<p><code>elixir
+import Math
+IO.puts "Got squared #{squared(5)}"
+</code></p>
+
+<p>At compilation time, <code>squared(5)</code> => <code>5 * 5</code></p>
+
+<blockquote><p><strong>not unquote the same value more than once</strong></p>
+
+<p>Elixir macros are hygienic, variables defining inside macros won&rsquo;t leak
+to user context. You can break this by <code>var!</code></p>
+
+<p>Note that you cannot even access variables defined in the same module unless
+you explicitly give it a context:</p>
+
+<p>Aliases inside quote are hygienic by default</p>
+
+<p>When defining functions via macros, developers have the option of choosing if
+runtime errors will be reported from the caller or from inside the quote.</p>
+
+<p>Binding and unquote fragments</p></blockquote>
+
+<ul>
+<li><p>Unquote fragments provide an easy way to generate functions on the
+fly</p></li>
+<li><p>This is because the macro is expecting its arguments to be a keyword list at
+<strong>compilation</strong> time.</p>
+
+<p>┃ kv = [foo: 1, bar: 2]
+┃ defkv kv</p></li>
+</ul>
+
+
+<p>The code will fail because we are passing the representation of variable <code>kv</code></p>
+
+<blockquote><p>In practice, we want to avoid doing work at compilation time as much as
+possible.</p>
+
+<p>unquote fragment vs regular unquote</p>
+
+<p>By using :bind_quoted, we can automatically disable unquoting while still
+injecting the desired variables into the tree:</p>
+
+<p>In fact, the :bind_quoted option is recommended every time one desires to
+inject a value into the quote.</p></blockquote>
+
+<p>Options:</p>
+
+<ul>
+<li>unquote</li>
+<li>location
+When set to :keep, keeps the current line and file from quote.
+Read the Stacktrace information section below for more</li>
+<li>hygiene</li>
+<li>context</li>
+<li>bind_quoted</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<ul>
+<li></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[plug]]></title>
     <link href="http://zhenwusw.github.io/blog/2014/01/27/plug/"/>
     <updated>2014-01-27T20:26:00+08:00</updated>
     <id>http://zhenwusw.github.io/blog/2014/01/27/plug</id>
-    <content type="html"><![CDATA[<h2>what&rsquo;s plug in Elixir</h2>
+    <content type="html"><![CDATA[<h1>what&rsquo;s plug in Elixir</h1>
 
 <blockquote><p>A plug is <strong>any function</strong>* that receives a connection and a set of options as arguments and returns a tuple in the format { tag :: atom, conn :: Plug.Conn.t }</p></blockquote>
 
@@ -35,52 +168,88 @@
 
 <p>&hellip;</p>
 
-<h2>First try of Plug</h2>
+<h1>First try of Plug</h1>
 
 <p>Plug let us start with a single file Plug application:</p>
 
 <p>(actually not so <em>single</em> because you need to put in under the <em>plug</em>
 directory for now since plug is naturally a <code>mix</code> project)</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>first_plug.exs</span><a href='/downloads/code/elixir/first_plug.exs' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='code'><pre><code class='exs'><span class='line'><span class="k">defmodule</span> <span class="no">FirstPlug</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  </span><span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span> <span class="k">do</span>
-</span><span class='line'><span class="k">    </span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span>
-</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">put_resp_content_type</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
-</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">send_resp</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="n">conn</span> <span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Running FirstPlug with Cowboy on http://localhost:4000&quot;</span>
-</span><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">http</span> <span class="no">FirstPlug</span><span class="p">,</span> <span class="p">[]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% include_code elixir/first_plug.exs linenos:false %}</p>
 
-<p>Run: <code>mix run --no-halt first_plug.exs</code> then open <code>http://localhost:4000</code>
-in your browser, you will see the &ldquo;Hello world&rdquo; text.</p>
+<p>Run: <code>mix run --no-halt first_plug.exs</code></p>
 
-<h2>Details</h2>
+<p>then navigate to <code>http://localhost:4000</code> in your any of browser</p>
 
-<p><code>elixir linenos:false
-  import Plug.Connection
+<h2>Adapters</h2>
+
+<p>Plug aims to be a common pattern or a bridge attaching the Webservers and applications in Elixir world. And here we would like to see how it connects
+Cowboy and our single FirstPlug.</p>
+
+<p><code>Plug.Adapters.Cowboy.http FirstPlug, []</code></p>
+
+<p>The first argument can be any module which contains <code>call</code> method, we&rsquo;ll deep
+into the <code>call</code> method lately.</p>
+
+<h2>plug router</h2>
+
+<p>The router is a plug, which means it can be invoked as:</p>
+
+<p><code>elixir
+Plug.Router.call(conn, [])
 </code></p>
 
-<p>```elixir linenos:false
-@doc &ldquo;&rdquo;&ldquo;
-  Assigns a new key and value in the connection.</p>
+<p><code>Plug.Router</code> compiles all of your routes into a single function and relies on
+the EVM to optimize the underlying routes into a tree lookup instead of a
+linear lookup that would instead match route-per-route. That means route lookup
+are extremly fast in Plug!</p>
 
-<p>  ## Examples</p>
+<p>```elixir
+defmacro <strong>using</strong>(_) do
+  quote location: :keep do</p>
 
-<pre><code>  iex&gt; conn.assigns[:hello]
-  nil
-  iex&gt; conn = assign(conn, :hello, :world)
-  iex&gt; conn.assigns[:hello]
-  :world
+<pre><code>import unquote(__MODULE__)
+
+def call(conn, _opts) do
+  dispatch(conn.method, conn.path_info, conn)
+end
+
+defoverridable [call: 2]
 </code></pre>
 
-<p>  &ldquo;&rdquo;&ldquo;
+<p>  end
+end
 ```</p>
+
+<p><code>defoverridable</code> &hellip;</p>
+
+<h2>Plug test</h2>
+
+<h2>plug endpoint</h2>
+
+<p>The plug endpoint here is the <code>call</code> method which receives two parameters:
+<code>Plug.Conn</code> record and Keyword options. Returns can be any atom, with two values have specific meaning to plug:</p>
+
+<ul>
+<li><code>ok</code> &ndash; pass the connection to the next plug in the stack</li>
+<li><code>halt</code> &ndash; halts the current and all other stacks</li>
+</ul>
+
+
+<p>Any other values means the connection should be halted &hellip;</p>
+
+<h2></h2>
+
+<p>Inside <code>Plug.Connection</code> module, we can see the <code>Plug.Conn</code> was defined with</p>
+
+<ul>
+<li>request fields</li>
+<li>response fields</li>
+<li><p>connection fields</p></li>
+<li><p>fetchable fields</p></li>
+<li>unfetchable fields</li>
+</ul>
+
 ]]></content>
   </entry>
   
@@ -93,6 +262,12 @@ in your browser, you will see the &ldquo;Hello world&rdquo; text.</p>
 
 <pre><code>hehe
 </code></pre>
+
+<h2>What happens when runnign <code>elixir file.ex</code></h2>
+
+<p>   &hellip;</p>
+
+<h2></h2>
 
 <h2>What&rsquo;s different between Elixir and Erlang</h2>
 
@@ -309,47 +484,11 @@ You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> ex
     <id>http://zhenwusw.github.io/blog/2014/01/12/code-organization-in-environments</id>
     <content type="html"><![CDATA[<p>First of all, Dynamo is a <a href="http://elixir-lang.org/getting_started/mix/1.html">mix</a> project, which shipping with environments independence naturally.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mix.exs </span></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='exs'><span class='line'><span class="ss">deps:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="c1"># dev, test, prod</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock mix.exs %}
+  deps: Mix.env # dev, test, prod
+{% endcodeblock %}</p>
 
 <p>coming soon&hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Elixir resources]]></title>
-    <link href="http://zhenwusw.github.io/blog/2013/10/28/elixir-resources/"/>
-    <updated>2013-10-28T21:05:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2013/10/28/elixir-resources</id>
-    <content type="html"><![CDATA[<p><blockquote><p>Elixir is a functional meta-programming aware language built on top of the Erlang VM.<br/> It is a dynamic language with flexible syntax with macros support that leverages Erlang&rsquo;s<br/> abilities to build concurrent, distributed, fault-tolerant applications with hot code upgrades.</p><footer><strong>Jose Valim <a href="http://elixir-lang.org/">http://elixir-lang.org/</a>  Elixir homepage</strong></footer></blockquote></p>
-
-<p>Just as <a href="http://benjamintanweihao.github.io/blog/2013/06/08/why-my-next-programming-language-is-elixir/">Benjamin</a> said: Having a pretty syntax wrapped around the powerful Erlang VM seems to be
-an irresistible combination, that&rsquo;s why Elixir might become the next language
-you would like to learn :)</p>
-
-<!-- more -->
-
-
-<h2>Parts of the resources from <a href="https://github.com/elixir-lang/elixir/wiki/Articles">Elixir wiki</a></h2>
-
-<ul>
-<li><p><a href="http://alanpeabody.com/presentations/introduction-to-elixir/">Presentation by Alan Peabody</a></p></li>
-<li><p><a href="http://elixirsips.com/">Elixir Sips</a></p></li>
-</ul>
-
-
-<p>A twice-weekly screencast series about Elixir by <a href="https://github.com/knewter">Josh
-Adams</a>. All screencasts are available
-for $9 a month. One free episode is available
-to all as a sample.</p>
-
-<ul>
-<li><a href="http://www.sitepoint.com/elixir-love-child-ruby-erlang/">Elixir love child ruby erlang</a></li>
-</ul>
-
-
-<p>This article is a whirlwind tour of some of best features of Elixir</p>
 ]]></content>
   </entry>
   

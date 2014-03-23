@@ -4,7 +4,7 @@
   <title><![CDATA[Category: evernote | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/evernote/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-01-27T21:37:38+08:00</updated>
+  <updated>2014-03-23T12:17:43+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -61,7 +61,7 @@ One of my colleagues suggested that we could use PhantomJS, a headless
 WebKit scriptable with a JavaScript API, to help generate the maps
 images.</p>
 
-<p><img class="center" src="/images/phantomjs-route.png" width="450" height="200" title="Place Kitten #2" ></p>
+<p>{% img center /images/phantomjs-route.png 450 200 Place Kitten #2 %}</p>
 
 <p>  PhantomJS is a great tool, but it’s a bit heavy to just create an image
 from our site, and it makes things more complicated to write some extra
@@ -86,7 +86,7 @@ we met when creating ENML documents. With a simple and popular shell
 utility wkhtmltopdf in hand, we can easily convert our HTML to PDF
 easily using the webkit rendering engine.</p>
 
-<p><img class="center" src="/images/plan.png" width="500" height="300" title="Place Kitten #2" ></p>
+<p>{% img center /images/plan.png 500 300 Place Kitten #2 %}</p>
 ]]></content>
   </entry>
   

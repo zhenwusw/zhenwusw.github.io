@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>elixir macro - zhenwusw</title>
+  <meta name="author" content="zhen">
+
+  
+  <meta name="description" content="Tweet Elixir Macro Jan 29th, 2014 Homoiconic The property of code being data and data being code is called homoiconicity. The representation of a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/01/29/elixir-macro/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="zhenwusw" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">zhenwusw</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">zhenwusw</a></h1>
+  </li>
+	<a href="https://twitter.com/zhenwusw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @zhenwusw</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">L |> T |> W</h2>
+  </li>
+
+
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
+
+  <li class="link">
+    <a href="http://about.me/zhenwusw/">about</a>
+  </li>
+
+<!-- <li class="link">
+  <a href="/learning-dynamo">Learning Dynamo</a>
+</li> -->
+
+  <li class="link">
+    <a href="http://twitter.com/zhenwusw/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/zhenwusw/">github</a>
+  </li>
+
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Elixir Macro</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-29T23:13:00+08:00" pubdate data-updated="true">Jan 29<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<h1>Homoiconic</h1>
+
+<blockquote><p>The property of code being data and data being code is called homoiconicity. The representation of a program is also a data structure in a primitive type of the language.</p></blockquote>
+
+<ul>
+<li>function that takes data as arguments and returns data</li>
+<li>data can b code representation</li>
+<li>it&rsquo;s called at compile time</li>
+<li>code what it&rsquo;s invoked will be replaced</li>
+<li>powerful, performant way to build DSLs</li>
+<li>Achieve many of the same effects as Metaprogramming but at compile time:
+<strong> Allow us to be lazy about evaluation
+</strong> function calls: arguments are always resolved before they are passed to them</li>
+</ul>
+
+
+<h1>Abstract Syntax Trees(AST)</h1>
+
+<blockquote><p>AST is a tree representation of the syntactical structure of source code. It is referred to as abstract since it does not exactly represent every detail that appears in the real syntax. Since the representation is now focused on the machine and not humans, there may be more optimal modeling that lose some of the details of the source.</p></blockquote>
+
+<ul>
+<li><code>quote</code> provides functionality to turn code into AST</li>
+<li><code>unquote</code> injecte variable values into the AST</li>
+<li><code>unquote_splicing</code> turns a <strong>list</strong>* of arguments into <strong>comma</strong> delimited arguments<br/>
+in the code</li>
+<li>Macro Escaping:</li>
+<li>Eval quoted: add a runtime aspect to our compile time macro though with some limited scope</li>
+<li>hygiene: it&rsquo;s about scope of your variables</li>
+<li>unquoting outside of macros: The bind_quoted will disable unquote and thats exactly what we want, it’s clear that unquote is not part of the macro.</li>
+</ul>
+
+
+<p>====================================</p>
+
+<p>What&rsquo;s Macro, I think is the code or expression that can be excute during the
+compilation time &hellip;</p>
+
+<blockquote><p>Quote is commonly used with macro for <em>code generation</em></p>
+
+<p>Gets the representation of any expression.</p>
+
+<p><strong>Any</strong>* Elixir code can be represented using Elixir data structures
+With some code returns themselves: Atoms, Integers, Floats, Lists, Strings,
+Two element&rsquo;s tuple</p>
+
+<p>building code of Elixir macro</p></blockquote>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">Math</span> <span class="k">do</span>
+</span><span class='line'><span class="k">   defmacro</span> <span class="n">squared</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">     </span><span class="kn">quote</span> <span class="k">do</span>
+</span><span class='line'><span class="k">       </span><span class="kn">unquote</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="kn">import</span> <span class="no">Math</span>
+</span><span class='line'><span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Got squared </span><span class="si">#{</span><span class="n">squared</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>At compilation time, <code>squared(5)</code> => <code>5 * 5</code></p>
+
+<blockquote><p><strong>not unquote the same value more than once</strong></p>
+
+<p>Elixir macros are hygienic, variables defining inside macros won&rsquo;t leak
+to user context. You can break this by <code>var!</code></p>
+
+<p>Note that you cannot even access variables defined in the same module unless
+you explicitly give it a context:</p>
+
+<p>Aliases inside quote are hygienic by default</p>
+
+<p>When defining functions via macros, developers have the option of choosing if
+runtime errors will be reported from the caller or from inside the quote.</p>
+
+<p>Binding and unquote fragments</p></blockquote>
+
+<ul>
+<li><p>Unquote fragments provide an easy way to generate functions on the
+fly</p></li>
+<li><p>This is because the macro is expecting its arguments to be a keyword list at
+<strong>compilation</strong> time.</p>
+
+<p>┃ kv = [foo: 1, bar: 2]
+┃ defkv kv</p></li>
+</ul>
+
+
+<p>The code will fail because we are passing the representation of variable <code>kv</code></p>
+
+<blockquote><p>In practice, we want to avoid doing work at compilation time as much as
+possible.</p>
+
+<p>unquote fragment vs regular unquote</p>
+
+<p>By using :bind_quoted, we can automatically disable unquoting while still
+injecting the desired variables into the tree:</p>
+
+<p>In fact, the :bind_quoted option is recommended every time one desires to
+inject a value into the quote.</p></blockquote>
+
+<p>Options:</p>
+
+<ul>
+<li>unquote</li>
+<li>location
+When set to :keep, keeps the current line and file from quote.
+Read the Stacktrace information section below for more</li>
+<li>hygiene</li>
+<li>context</li>
+<li>bind_quoted</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<ul>
+<li></li>
+</ul>
+
+
+
+
+</article>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
