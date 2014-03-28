@@ -17,7 +17,7 @@ table {
 }
 
 pre {
-	max-width: 800px;
+	max-width: 650px;
 }
 
 img.book {
@@ -66,6 +66,10 @@ aside#logo div a {
   height: 78px;
   margin: 0 auto;
   margin-top: 6px;
+}
+
+ul {
+  max-width: 650px;
 }
 
 ul#menu {
@@ -322,11 +326,11 @@ section.comments {
 }
 
 article.post h2, article.post p {
-  max-width: 500px;
+  max-width: 650px;
 }
 
 article.post figure {
-  max-width: 500px;
+  max-width: 650px;
 }
 
 // Anchor
