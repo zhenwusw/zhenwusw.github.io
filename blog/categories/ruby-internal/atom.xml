@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby internal | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/ruby-internal/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-03-23T12:17:43+08:00</updated>
+  <updated>2014-03-28T21:25:34+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -96,7 +96,7 @@ and into another data structure called the <code>locale table</code>.</p>
 
 <h2>How Ruby interpret execute your ruby code</h2>
 
-<p>{% img center /images/2014-01/code-journey-through-ruby.png 470 150 %}</p>
+<p><img class="center" src="/images/2014-01/code-journey-through-ruby.png" width="470" height="150"></p>
 
 <h2>process one: tokenize</h2>
 
@@ -153,7 +153,7 @@ pp Ripper.lex(code)
 
 <p>Tokens are grouped into sentences or phrases that make sense to Ruby.</p>
 
-<p>{% img center /images/2014-01/ruby-bison-diagram.png 300 250 %}</p>
+<p><img class="center" src="/images/2014-01/ruby-bison-diagram.png" width="300" height="250"></p>
 
 <ul>
 <li>LALR parsing algorithm</li>
@@ -166,7 +166,7 @@ pp Ripper.lex(code)
 
 <p>The AST is used to record the structure and syntactical meaning of your Ruby code</p>
 
-<p>{% img center /images/2014-01/ast.png 500 350 %}</p>
+<p><img class="center" src="/images/2014-01/ast.png" width="500" height="350"></p>
 ]]></content>
   </entry>
   

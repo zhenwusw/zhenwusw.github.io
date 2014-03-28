@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elixir | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/elixir/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-03-23T12:17:43+08:00</updated>
+  <updated>2014-03-28T21:25:34+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -175,7 +175,20 @@ Read the Stacktrace information section below for more</li>
 <p>(actually not so <em>single</em> because you need to put in under the <em>plug</em>
 directory for now since plug is naturally a <code>mix</code> project)</p>
 
-<p>{% include_code elixir/first_plug.exs linenos:false %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>first_plug.exs</span><a href='/downloads/code/elixir/first_plug.exs' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='code'><pre><code class='exs'><span class='line'><span class="k">defmodule</span> <span class="no">FirstPlug</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span>
+</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">put_resp_content_type</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
+</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">send_resp</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="n">conn</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Running FirstPlug with Cowboy on http://localhost:4000&quot;</span>
+</span><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">http</span> <span class="no">FirstPlug</span><span class="p">,</span> <span class="p">[]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Run: <code>mix run --no-halt first_plug.exs</code></p>
 
@@ -484,9 +497,9 @@ You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> ex
     <id>http://zhenwusw.github.io/blog/2014/01/12/code-organization-in-environments</id>
     <content type="html"><![CDATA[<p>First of all, Dynamo is a <a href="http://elixir-lang.org/getting_started/mix/1.html">mix</a> project, which shipping with environments independence naturally.</p>
 
-<p>{% codeblock mix.exs %}
-  deps: Mix.env # dev, test, prod
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mix.exs </span></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='exs'><span class='line'><span class="ss">deps:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="c1"># dev, test, prod</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>coming soon&hellip;</p>
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-03-23T12:16:42+08:00</updated>
+  <updated>2014-03-28T21:25:34+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -12,84 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Ultimate sales machine]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/02/22/ultimate-sales-machine/"/>
-    <updated>2014-02-22T21:53:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/02/22/ultimate-sales-machine</id>
-    <content type="html"><![CDATA[<h2>6 steps for Time Management</h2>
-
-<ol>
-<li>Touch it once</li>
-<li>Making daily lists of the six most important tasks to accomplish</li>
-<li>Plan how long each task will be</li>
-<li>Assign time slots for accomplishing each task</li>
-<li>Focus on the difficult projects first</li>
-<li>Ask youself, &ldquo;Will it hurt me to throw this away?&rdquo;</li>
-</ol>
-
-
-<h2>Not so many &ldquo;got-a-minute&rdquo; meetings,</h2>
-
-<blockquote><p>If your computer signals when you have an email, <em>do not</em> go directly to
-read it and answer it at the moment</p>
-
-<p>concentration is like a muscle and it strengthens as you concentrate more</p></blockquote>
-
-<h2>Communication levels</h2>
-
-<ul>
-<li>Trello: schedule features</li>
-<li>Basecamp + Qortex: client supports</li>
-<li>Lighthouse: ticket management</li>
-<li>Github: code management</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[xxxxx]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/02/04/xxxxx/"/>
-    <updated>2014-02-04T00:26:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/02/04/xxxxx</id>
-    <content type="html"><![CDATA[<p>资金走向:</p>
-
-<ol>
-<li><p>不同阶层的可支配资金 &ndash;> 国有银行 &ndash;> 开发商小额贷款建房 &ndash;> 用建好的高价房抵押高额贷款
-&ndash;> 高额建房 (导致房价不断虚高才能购房者填补漏洞)</p></li>
-<li><p>银行损失的资金 &ndash;> 流入资本市场 &ndash;> 白领阶层的购买力 &ndash;> 舆论烘托 &ndash;> 剩余劳动力填补资金链</p></li>
-<li><p>靠 1 &ndash;> 2 &ndash;> 1 形成闭环，政策在其中归导该环，不至于偏离轨道</p></li>
-</ol>
-
-
-<h2>房价为什么会涨</h2>
-
-<ul>
-<li><p>在中国，阶层是存在的，不同阶层利益纠纷是存在的。发展中的中国通过通货膨胀和自我改革来维持
-可观的GDP, 而每次改革的阵痛不可避免的由下一级的阶层来买单。</p></li>
-<li><p>体制的僵化跟不上经济的快速发展，垄断经营使矛盾越加激烈。政府通过自我改良不断减少矛盾，但
-这注定不是一个简单的过程，既得利益者始终掌握着主要资源，不断收刮剩余价值。</p></li>
-<li><p>银行竞争下的贷款开放，国有银行却独立运营，开发商通过 贷款 &ndash;> 高房价 &ndash;> 再贷款 &ndash;> 再高房价
-的恶性循环把痛苦转嫁给民众或是贷款银行(最终还是普通民众的钱)</p></li>
-<li><p>中国特色的按揭, 按揭审核宽松是政府为了弥补资金的空洞，补充白领阶层的购买力。</p></li>
-</ul>
-
-
-<h2>房贷泡沫如何导致白领破产</h2>
-
-<ul>
-<li><p>国内的白领相比国外普遍水平不高，但为了让这一阶层具有一定的购买力，房产商的既得资金会部分
-转移到这些领域，致使这领域的白领能够负得起首付，还的起按揭。但全民生产力不提高，却以房产
-剥削来的资金并通过资金转移来带动 GDP 增长。</p></li>
-<li><p>那些年纪轻轻的小白领们，找工作最好把薪水要高一点，别要医疗保险和啥保险，自己把钱存起来最
-保险。</p></li>
-<li><p>你为什么要买车: 因为有时候我觉得去超市买点东西方便，你说这个距离吧，走去不合适，打的不好打。</p></li>
-</ul>
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[elixir macro]]></title>
@@ -532,105 +454,6 @@ node.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[stream and enum]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/01/26/stream-and-enum/"/>
-    <updated>2014-01-26T09:51:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/01/26/stream-and-enum</id>
-    <content type="html"><![CDATA[<h1>enumerator</h1>
-
-<ul>
-<li>data structures like List, String</li>
-<li>file</li>
-</ul>
-
-
-<blockquote><p>Just calling a function isn&rsquo;t all that useful for most tasks as there&rsquo;d be no way to remember previous lines, so some accumulator value is passed to the function and a new accumulator is returned by it.</p></blockquote>
-
-<p><a href="http://elixir-lang.org/blog/2013/12/11/elixir-s-new-continuable-enumerators/">http://elixir-lang.org/blog/2013/12/11/elixir-s-new-continuable-enumerators/</a></p>
-
-<p>Just like ActiveRelation in Rails, Elixir make composable, lazy enumeration as streams.</p>
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="m">1</span><span class="o">..</span><span class="m">3</span> <span class="o">|&gt;</span>
-</span><span class='line'>  <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span> <span class="o">|&gt;</span>
-</span><span class='line'>  <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="o">*</span> <span class="m">2</span><span class="p">))</span> <span class="o">|&gt;</span>
-</span><span class='line'>  <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
-</span><span class='line'><span class="m">1</span>
-</span><span class='line'><span class="m">2</span>
-</span><span class='line'><span class="m">3</span>
-</span><span class='line'><span class="m">2</span>
-</span><span class='line'><span class="m">4</span>
-</span><span class='line'><span class="m">6</span>
-</span><span class='line'><span class="c1">#=&gt; [2,4,6]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="n">stream</span> <span class="o">=</span> <span class="m">1</span><span class="o">..</span><span class="m">3</span> <span class="o">|&gt;</span>
-</span><span class='line'>  <span class="no">Stream</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span> <span class="o">|&gt;</span>
-</span><span class='line'>  <span class="no">Stream</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="o">*</span> <span class="m">2</span><span class="p">))</span> <span class="o">|&gt;</span>
-</span><span class='line'>  <span class="no">Stream</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="err">&amp;</span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
-</span><span class='line'><span class="no">Enum</span><span class="o">.</span><span class="n">to_list</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
-</span><span class='line'><span class="m">1</span>
-</span><span class='line'><span class="m">2</span>
-</span><span class='line'><span class="m">2</span>
-</span><span class='line'><span class="m">4</span>
-</span><span class='line'><span class="m">3</span>
-</span><span class='line'><span class="m">6</span>
-</span><span class='line'><span class="c1">#=&gt; [2,4,6]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>Stream.transform</code> &ndash; basic tool</p>
-
-<p><code>Stream.unfold</code></p>
-
-<p><code>Stream.zip</code></p>
-
-<p><code>Stream.map</code></p>
-
-<p><code>Stream.drop</code></p>
-
-<p><code>Stream.each</code></p>
-
-<p><code>Stream.each</code></p>
-
-<p><code>Stream.after/1</code></p>
-
-<p><code>Stream.chunk/4</code> &ndash; parameter step is kind of confusing</p>
-
-<p><code>Stream.repeatedly</code>  vs <code>Stream.iterate</code> vs <code>Stream.resource</code></p>
-
-<p><code>IO.stream/1</code> &ndash; Streams input lines, one by one;</p>
-
-<p><code>URI.query_decoder/1</code> &ndash; Decodes a query string, pair by pair;</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[mix introduction]]></title>
     <link href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/"/>
     <updated>2014-01-25T11:18:00+08:00</updated>
@@ -686,65 +509,6 @@ You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> ex
 
 
 <p>which ships with every Elixir release.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[untitled]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/01/20/untitled/"/>
-    <updated>2014-01-20T22:05:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/01/20/untitled</id>
-    <content type="html"><![CDATA[<h2>第一章</h2>
-
-<ul>
-<li><p>信息增长的速度极快，但大部分信息都只是噪声, 噪声增长的速度比信号更快。</p></li>
-<li><p>预测是人们共同的事业，而不仅仅是那些顶级专家的职责。</p></li>
-<li><p>我们永远都不可能做出完全客观的预测，因为这些预测都会带有主观色彩。</p></li>
-<li><p>专注与某一问题的研究总会得到比概括研究更深刻，更独到的见解。</p></li>
-<li><p>充分理解不可测行和不确定性，理解如何吧信息转变为知识。</p></li>
-</ul>
-
-
-<blockquote><p>在信息时代我们面临的一个重大挑战，就是全球的只是总量在增加，而我们世纪掌握的知识和
-  自认为掌握的知识之间的鸿沟却越来越宽。</p>
-
-<p>金融危机以及其它大多数失败的预测都源于一种盲目的自信。他们用精确的预测冒充准确的预测。</p></blockquote>
-
-<h2>第二章</h2>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[how ruby excute your code]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/01/19/how-ruby-excute-your-code/"/>
-    <updated>2014-01-19T11:09:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/01/19/how-ruby-excute-your-code</id>
-    <content type="html"><![CDATA[<blockquote><p>“YARV is not just a stack machine—it’s a double-stack machine!”</p></blockquote>
-
-<p>YARV has its own stack pointer and a program counter &mdash; that is
-like your computer&rsquo;s actual microprocessor.</p>
-
-<blockquote><p>The CFP pointer indicates the current frame pointer. Each stack frame in your Ruby program stack contains, in turn, a different value for the self, PC, and SP registers,</p></blockquote>
-
-<p>YARV instruction of <code>puts 2+2</code></p>
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='plain'><span class='line'>trace
-</span><span class='line'>putself
-</span><span class='line'>putobject     2
-</span><span class='line'>putobject     2
-</span><span class='line'>opt_plus
-</span><span class='line'>opt_send_simple      &lt;&lt;callinfo!mid:puts....
-</span><span class='line'>leave</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby uses the <code>trace</code> to support the <code>set_trace_func</code> feature.</p>
 ]]></content>
   </entry>
   
@@ -857,42 +621,6 @@ second to the inner block scope.</p>
 <p>Here we can see the <code>local table</code>, once Ruby&rsquo;s ompiler runs, the
 information about the block parameter is copied out of the AST
 and into another data structure called the <code>locale table</code>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[compilation in Ruby]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/01/18/compilation-in-ruby/"/>
-    <updated>2014-01-18T09:46:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/01/18/compilation-in-ruby</id>
-    <content type="html"><![CDATA[<blockquote><p>You may think of Ruby as a dynamic scripting language, but, in
-  fact, it uses a compiler just like C, Java, and myan other
-  programming laungages. Rubys&#8217; compiler works b iterating through
-  the AST produced by the tokenizing and parsing processes,
-  generating a series of bytescode instructions along the way.</p>
-
-<p>The code Ruby actually runs looks nothing like your original code</p></blockquote>
-
-<p>..</p>
-
-<blockquote><p>Starting with version 1.9, Ruby compiles your code before executing it.</p></blockquote>
-
-<p>..</p>
-
-<blockquote><p>It translates your Ruby code into another language that Ruby&rsquo;s VM understands
-The only difference is that you don&rsquo;t use Ruby&rsquo;s compiler directly</p></blockquote>
-
-<p>..</p>
-
-<p>Now the process becomes: tokenizing &ndash;> parsing &ndash;> compiling</p>
-
-<h2>The only differences between YARV and the JVM are the following</h2>
-
-<ul>
-<li><p>Ruby doesn&rsquo;t expose the commpiler to you as a separate tool.</p></li>
-<li><p>Ruby never compiles your Ruby code all the way to machine language</p></li>
-</ul>
-
 ]]></content>
   </entry>
   
@@ -1022,39 +750,6 @@ The only difference is that you don&rsquo;t use Ruby&rsquo;s compiler directly</
 
 
 <p>coming soon&hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[为什么中国有前途]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/01/11/why-china-is-promising/"/>
-    <updated>2014-01-11T23:09:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/01/11/why-china-is-promising</id>
-    <content type="html"><![CDATA[<p><a href="http://v.youku.com/v_show/id_XNjU5NTUxMzI4.html">优酷链接</a></p>
-
-<p>历史跨度:  16, 17 世纪 &ndash;> 18, 19 世纪 &ndash;> 20 世纪</p>
-
-<p>西班牙, 葡萄牙, 荷兰 &ndash;> 日不落帝国 &ndash;> 美利坚, 苏联 &ndash;> ???</p>
-
-<p>百万级人口          &ndash;> 千万级人口 &ndash;> 亿级人口</p>
-
-<p>创新 + 扩散 + 规模</p>
-
-<p>边缘国际 &ndash;> 中央国家</p>
-
-<p>中国, 印度</p>
-
-<p>战后美国维持近70年世界体系</p>
-
-<p>现有格局影响力</p>
-
-<p>如何看待 自由与民主</p>
-
-<p>铸币税</p>
-
-<p>每个美国老太太 背后都有个 中国老太太</p>
-
-<p>扩展成本 超过了 扩展收益</p>
 ]]></content>
   </entry>
   
