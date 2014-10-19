@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pipeline - zhenwusw</title>
+  <meta name="author" content="zhen">
+
+  
+  <meta name="description" content="Tweet Pipeline Mar 29th, 2014 https://www.dropbox.com/sh/aw3sl4jabwzd1nk/AAChT-jig5SKVW0w_fCpsY5ta/ElixirConf.pdf functions transform data 1
+2
+2, 2 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/03/29/pipeline/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="zhenwusw" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">zhenwusw</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">zhenwusw</a></h1>
+  </li>
+	<!-- <a href="https://twitter.com/zhenwusw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @zhenwusw</a> -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">L |> T |> W</h2>
+  </li>
+
+
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
+
+  <li class="link">
+    <a href="http://about.me/zhenwusw/" target="_new">about</a>
+  </li>
+
+<!-- <li class="link">
+  <a href="/learning-dynamo">Learning Dynamo</a>
+</li> -->
+<!-- 
+  <li class="link">
+    <a href="http://twitter.com/zhenwusw/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/zhenwusw/">github</a>
+  </li>
+ -->
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+  <li class="link">
+    <a href="/blog/archives">archives</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Pipeline</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-29T10:05:00+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<blockquote><p><a href="https://www.dropbox.com/sh/aw3sl4jabwzd1nk/AAChT-jig5SKVW0w_fCpsY5ta/ElixirConf.pdf">https://www.dropbox.com/sh/aw3sl4jabwzd1nk/AAChT-jig5SKVW0w_fCpsY5ta/ElixirConf.pdf</a></p></blockquote>
+
+<ul>
+<li>functions transform data</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>2, 2 => `+` => 4
+</span><span class='line'>π/4  => `sin` => 0.7071</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>session data => `lookup` => user info
+</span><span class='line'>shopping cart,|| 
+</span><span class='line'>              || => `checkout` => order
+</span><span class='line'>payment info  ||</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ul>
+<li>functions compose</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  def signature(word) do
+</span><span class='line'>    chars   = codepoints(word)
+</span><span class='line'>    ordered = sort(chars)
+</span><span class='line'>    result  = join(ordered)
+</span><span class='line'>    result
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>OR:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  def signature(word) do
+</span><span class='line'>    join(sort(codepoints(word)))
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ul>
+<li>Pipeline!</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  def signature(word) do
+</span><span class='line'>    word |> codepoints |> sort |> join
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><strong> express transformations
+</strong> separate data and functions
+** code closer to the problem</p>
+
+
+
+</article>
+
+  <section class="comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'zhenwusw-blog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zhenwusw.github.io/blog/2014/03/29/pipeline/';
+        var disqus_url = 'http://zhenwusw.github.io/blog/2014/03/29/pipeline/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

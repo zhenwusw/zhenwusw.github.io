@@ -4,7 +4,7 @@
   <title><![CDATA[zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-03-28T22:23:10+08:00</updated>
+  <updated>2014-10-19T11:07:57+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -12,6 +12,479 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Elixir meta programming vs Ruby meta programming]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/09/17/elixir-meta-programming-vs-ruby-meta-programming/"/>
+    <updated>2014-09-17T16:34:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/09/17/elixir-meta-programming-vs-ruby-meta-programming</id>
+    <content type="html"><![CDATA[<h2>Examples</h2>
+
+<h2>Meta programming</h2>
+
+<ul>
+<li><p>wiki: minimize the number of lines of code to express a solution
+      hence reducing development time</p></li>
+<li><p>Code that write code (DRY in language layer)</p></li>
+<li><p>Declarative programming (DSL)</p></li>
+<li><p>Compile-time vs Runtime</p></li>
+</ul>
+
+
+<h2>Ruby</h2>
+
+<ul>
+<li><p>Ruby is interpreted, not compiled</p></li>
+<li><p>Calling methods dynamically</p>
+
+<p><strong> parametized method names
+</strong> callbacks and observers
+<strong> convention-oriented code
+</strong> working with method collections</p></li>
+<li><p>call methods dynamically: <code>send</code></p>
+
+<p> unit test: pattern dispatch</p></li>
+<li><p>define methods dynamically:</p></li>
+</ul>
+
+
+<p> <code>Module#define_method</code></p>
+
+<ul>
+<li><p>Ruby object model I: classes, objects, modules, blocks</p>
+
+<p><strong> Object introspection
+</strong></p></li>
+</ul>
+
+
+<h3>OOP tactics</h3>
+
+<ul>
+<li>Open classes</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">to_alphanumeric</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">gsub</span> <span class="sr">/[^\w\s]/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">to_alphanumeric</span><span class="p">(</span><span class="s1">&#39;#3, the *Magic, Number*?&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">more</span> <span class="n">object</span><span class="o">-</span><span class="n">oriented</span>
+</span><span class='line'><span class="s1">&#39;#3, the *Magic, Number*?&#39;</span><span class="o">.</span><span class="n">to_alphanumeric</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Money</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Numeric</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">to_money</span>
+</span><span class='line'>    <span class="no">Money</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="mi">10000</span><span class="o">.</span><span class="n">to_money</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Open class will cause some overwrite issues. Monkey patch</li>
+<li>can be difficult to track in large code base</li>
+<li><p>Ruby 2.0 has confined limited scoped open classes?</p></li>
+<li><p>objects of the same class that carry different sets of
+instance variables.</p></li>
+</ul>
+
+
+<p><strong> Method lookup </strong>: <code>receiver</code> and <code>ancestors chain</code>
+<strong> Ruby Object Model </strong>
+  this flexibility is typical of Ruby&rsquo;s metaprogramming.
+* while other programming languages allow you to read class-related
+  information, Ruby allows you to write that information at runtime
+  <code>Class.new</code> to create new classes at runtime
+* refer to &ldquo;Objects and Classes Wrap-up&rdquo;</p>
+
+<ul>
+<li>mixin creates a anonymous class which wraps the module and inserts
+that anonymous class in the chain</li>
+</ul>
+
+
+<p>&amp;&amp; 统一能最大发挥效能</p>
+
+<p>  Ruby&rsquo;s all is objects
+  Elixir&rsquo;s uniform AST</p>
+
+<ul>
+<li>Extensible type system</li>
+</ul>
+
+
+<p><code>define_method</code>, <code>method_missing</code>, <code>method_removed</code>,</p>
+
+<p><code>method_added</code>, <code>class_eval</code>, <code>instance_eval</code>, <code>block.binding</code></p>
+
+<p><code>foo.send :bar</code>, <code>class &lt;&lt; self</code>, <code>eval</code></p>
+
+<p><code>Class.new</code>, <code>modudle_eval</code>, <code>instance_variable_get</code>,</p>
+
+<p><code>instance_variable_set</code>, <code>block.call</code></p>
+
+<h2>Elixir</h2>
+
+<ul>
+<li>Macros system</li>
+<li></li>
+</ul>
+
+
+<h3>Links</h3>
+
+<ul>
+<li><a href="http://elixir-lang.org/getting_started/meta/1.html">http://elixir-lang.org/getting_started/meta/1.html</a></li>
+<li><a href="http://elixir-lang.org/getting_started/meta/2.html">http://elixir-lang.org/getting_started/meta/2.html</a></li>
+<li><p><a href="http://elixir-lang.org/getting_started/meta/3.html">http://elixir-lang.org/getting_started/meta/3.html</a></p></li>
+<li><p><a href="http://www.theerlangelist.com/">http://www.theerlangelist.com/</a></p></li>
+</ul>
+
+
+<h2>Inspired by</h2>
+
+<ul>
+<li>metaprogramming with ruby PPT</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[why we should learn FP]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/09/15/why-we-should-learn-fp/"/>
+    <updated>2014-09-15T08:11:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/09/15/why-we-should-learn-fp</id>
+    <content type="html"><![CDATA[<ul>
+<li><p>It tell computer what to do instead of how to do something</p>
+
+<p>simple example FP prefer recursion instead of <code>while</code> , <code>for</code> loops
+pattern matching instead of a lot of <code>if</code> <code>else</code> test for differet conditions</p>
+
+<p><code>
+maximum' :: (Ord a) =&gt; [a] -&gt; a  
+maximum' [] = error "maximum of empty list"  
+maximum' [x] = x  
+maximum' (x:xs)   
+  | x &gt; maxTail = x  
+  | otherwise = maxTail  
+  where maxTail = maximum' xs
+</code></p></li>
+<li><p>separate type declaration and function definition</p></li>
+<li>pattern matching <code>vs</code> imperative language&rsquo;s <code>if</code>/<code>else</code> or other polymorphisms strategies of class inheritance system</li>
+<li>elegant function guard and <code>where</code> bindings</li>
+<li>recursion</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>maximum' (x:xs) = max x (maximum' xs)</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[facebook-login]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/09/11/facebook-login/"/>
+    <updated>2014-09-11T16:28:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/09/11/facebook-login</id>
+    <content type="html"><![CDATA[<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>from omniauth-facebook
+</span><span class='line'>You can use the Facebook Javascript SDK with `FB.login`, and just hit the callback endpoint (`/auth/facebook/callback` by default) once the user has authenticated in the success callback.</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>Facebook web login flow generate short-lived tokens.
+</span><span class='line'>Native mobile applications using Facebook's SDKs will get long-lived access tokens, good for about 60 days.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>auth = Koala::Facebook::OAuth.new("537734153005675", "182d31b4202a20bfaa256f3e270fa4e3")
+</span><span class='line'>
+</span><span class='line'>user_info = auth.get_user_info_from_cookies(cookies)
+</span><span class='line'>auth.exchange_access_token_info(short_lived_token)
+</span><span class='line'>graph = Koala::Facebook::API.new(user_info["access_token"])</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>Getting Info about Tokens and Debugging
+</span><span class='line'>https://developers.facebook.com/docs/facebook-login/access-tokens</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>Login flow security
+</span><span class='line'>https://developers.facebook.com/docs/facebook-login/security</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automated Browser Testing on Internet Explorer with Capybara]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/09/10/automated-browser-testing-on-ie-with-capybara/"/>
+    <updated>2014-09-10T20:26:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/09/10/automated-browser-testing-on-ie-with-capybara</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[plug]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/08/19/understand-plug-2/"/>
+    <updated>2014-08-19T20:26:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/08/19/understand-plug-2</id>
+    <content type="html"><![CDATA[<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">MyPlug</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">opts</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="o">.</span><span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="s2">&quot;worldd&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">http</span> <span class="no">MyPlug</span><span class="p">,</span> <span class="p">[]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>define handler module</li>
+</ol>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defp</span> <span class="n">dispatch_for</span><span class="p">(</span><span class="n">plug</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="n">opts</span> <span class="o">=</span> <span class="n">plug</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">[{</span><span class="ss">:_</span><span class="p">,</span> <span class="p">[</span> <span class="p">{</span><span class="ss">:_</span><span class="p">,</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="no">Handler</span><span class="p">,</span> <span class="p">{</span><span class="n">plug</span><span class="p">,</span> <span class="n">opts</span><span class="p">}}</span> <span class="p">]}]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>start related applications</li>
+</ol>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:crypto</span><span class="p">)</span>
+</span><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:ranch</span><span class="p">)</span>
+</span><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:cowlib</span><span class="p">)</span>
+</span><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:cowboy</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li><p>start listening for HTTP connections via <code>ranch:start_listener]</code> <a href="http://ninenines.eu/docs/en/ranch/HEAD/guide/listeners">xkjdf</a></p></li>
+<li><p>Requests will be forwarded to Handler</p></li>
+<li><p>do our job by <code>plug.call(...)</code></p></li>
+<li></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[plug]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/08/19/understand-plug-1/"/>
+    <updated>2014-08-19T20:26:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/08/19/understand-plug-1</id>
+    <content type="html"><![CDATA[<ul>
+<li>function plugs</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="p">(</span><span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="no">Plug</span><span class="o">.</span><span class="n">opts</span><span class="p">)</span> <span class="p">::</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="o">.</span><span class="n">t</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>module plugs</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+</span><span class='line'><span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>wrappers</p></li>
+<li><p>builder</p></li>
+<li><p>misc</p></li>
+</ul>
+
+
+<p><code>defmacro</code> are only invoked(expanded) in compilation time
+<code>def/defp</code> could be invoked both in compilation time and in runtime</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pipeline]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/03/29/pipeline/"/>
+    <updated>2014-03-29T10:05:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/03/29/pipeline</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="https://www.dropbox.com/sh/aw3sl4jabwzd1nk/AAChT-jig5SKVW0w_fCpsY5ta/ElixirConf.pdf">https://www.dropbox.com/sh/aw3sl4jabwzd1nk/AAChT-jig5SKVW0w_fCpsY5ta/ElixirConf.pdf</a></p></blockquote>
+
+<ul>
+<li>functions transform data</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>2, 2 => `+` => 4
+</span><span class='line'>π/4  => `sin` => 0.7071</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>session data => `lookup` => user info
+</span><span class='line'>shopping cart,|| 
+</span><span class='line'>              || => `checkout` => order
+</span><span class='line'>payment info  ||</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>functions compose</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  def signature(word) do
+</span><span class='line'>    chars   = codepoints(word)
+</span><span class='line'>    ordered = sort(chars)
+</span><span class='line'>    result  = join(ordered)
+</span><span class='line'>    result
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OR:</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  def signature(word) do
+</span><span class='line'>    join(sort(codepoints(word)))
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Pipeline!</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>  def signature(word) do
+</span><span class='line'>    word |> codepoints |> sort |> join
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong> express transformations
+</strong> separate data and functions
+** code closer to the problem</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pipeline]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/03/29/elixir-highlights/"/>
+    <updated>2014-03-29T10:05:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/03/29/elixir-highlights</id>
+    <content type="html"><![CDATA[<ul>
+<li><p>Funcational programming language</p></li>
+<li><p>immunability</p></li>
+<li><p>pattern matching</p></li>
+</ul>
+
+
+<p>Inteterting aspects</p>
+
+<ul>
+<li>Easily made parallel</li>
+<li>DSL could define business flow</li>
+<li>granular reuse</li>
+<li>easier testing</li>
+<li>better error handling</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[elixir macro]]></title>
@@ -458,7 +931,17 @@ node.</p>
     <link href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/"/>
     <updated>2014-01-25T11:18:00+08:00</updated>
     <id>http://zhenwusw.github.io/blog/2014/01/25/mix-introduction</id>
-    <content type="html"><![CDATA[<p>When we &hellip;, we can see &hellip; after we pull code from dynamo repo</p>
+    <content type="html"><![CDATA[<ul>
+<li>Combine multiple mix commands by passing them into <code>do</code> block</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'>  <span class="n">mix</span> <span class="k">do </span><span class="n">deps</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">compile</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When we &hellip;, we can see &hellip; after we pull code from dynamo repo</p>
 
 <p>Get Dynamo dependencies and run tests with:
   <code>MIX_ENV=test mix do deps.get, test</code></p>

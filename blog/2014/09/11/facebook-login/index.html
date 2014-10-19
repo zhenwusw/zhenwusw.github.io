@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>facebook-login - zhenwusw</title>
+  <meta name="author" content="zhen">
+
+  
+  <meta name="description" content="Tweet Facebook-login Sep 11th, 2014 1
+2
+from omniauth-facebook
+You can use the Facebook Javascript SDK with `FB.login`, and just hit the callback &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/09/11/facebook-login/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="zhenwusw" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">zhenwusw</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">zhenwusw</a></h1>
+  </li>
+	<!-- <a href="https://twitter.com/zhenwusw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @zhenwusw</a> -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">L |> T |> W</h2>
+  </li>
+
+
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
+
+  <li class="link">
+    <a href="http://about.me/zhenwusw/" target="_new">about</a>
+  </li>
+
+<!-- <li class="link">
+  <a href="/learning-dynamo">Learning Dynamo</a>
+</li> -->
+<!-- 
+  <li class="link">
+    <a href="http://twitter.com/zhenwusw/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/zhenwusw/">github</a>
+  </li>
+ -->
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+  <li class="link">
+    <a href="/blog/archives">archives</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Facebook-login</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-11T16:28:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>from omniauth-facebook
+</span><span class='line'>You can use the Facebook Javascript SDK with `FB.login`, and just hit the callback endpoint (`/auth/facebook/callback` by default) once the user has authenticated in the success callback.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>Facebook web login flow generate short-lived tokens.
+</span><span class='line'>Native mobile applications using Facebook's SDKs will get long-lived access tokens, good for about 60 days.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>auth = Koala::Facebook::OAuth.new("537734153005675", "182d31b4202a20bfaa256f3e270fa4e3")
+</span><span class='line'>
+</span><span class='line'>user_info = auth.get_user_info_from_cookies(cookies)
+</span><span class='line'>auth.exchange_access_token_info(short_lived_token)
+</span><span class='line'>graph = Koala::Facebook::API.new(user_info["access_token"])</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>Getting Info about Tokens and Debugging
+</span><span class='line'>https://developers.facebook.com/docs/facebook-login/access-tokens</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>Login flow security
+</span><span class='line'>https://developers.facebook.com/docs/facebook-login/security</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+
+
+</article>
+
+  <section class="comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'zhenwusw-blog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zhenwusw.github.io/blog/2014/09/11/facebook-login/';
+        var disqus_url = 'http://zhenwusw.github.io/blog/2014/09/11/facebook-login/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

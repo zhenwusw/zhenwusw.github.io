@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>plug - zhenwusw</title>
+  <meta name="author" content="zhen">
+
+  
+  <meta name="description" content="Tweet Plug Aug 19th, 2014 1
+2
+3
+4
+5
+6
+7
+defmodule MyPlug do def init(opts), do: opts def call(conn, _opts) do Plug.Conn.send_resp(conn, 200, &quot; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/08/19/understand-plug-2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="zhenwusw" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">zhenwusw</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">zhenwusw</a></h1>
+  </li>
+	<!-- <a href="https://twitter.com/zhenwusw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @zhenwusw</a> -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">L |> T |> W</h2>
+  </li>
+
+
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
+
+  <li class="link">
+    <a href="http://about.me/zhenwusw/" target="_new">about</a>
+  </li>
+
+<!-- <li class="link">
+  <a href="/learning-dynamo">Learning Dynamo</a>
+</li> -->
+<!-- 
+  <li class="link">
+    <a href="http://twitter.com/zhenwusw/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/zhenwusw/">github</a>
+  </li>
+ -->
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+  <li class="link">
+    <a href="/blog/archives">archives</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Plug</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-19T20:26:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">MyPlug</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">opts</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="o">.</span><span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="s2">&quot;worldd&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">http</span> <span class="no">MyPlug</span><span class="p">,</span> <span class="p">[]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ol>
+<li>define handler module</li>
+</ol>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defp</span> <span class="n">dispatch_for</span><span class="p">(</span><span class="n">plug</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="n">opts</span> <span class="o">=</span> <span class="n">plug</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">[{</span><span class="ss">:_</span><span class="p">,</span> <span class="p">[</span> <span class="p">{</span><span class="ss">:_</span><span class="p">,</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="no">Handler</span><span class="p">,</span> <span class="p">{</span><span class="n">plug</span><span class="p">,</span> <span class="n">opts</span><span class="p">}}</span> <span class="p">]}]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ol>
+<li>start related applications</li>
+</ol>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:crypto</span><span class="p">)</span>
+</span><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:ranch</span><span class="p">)</span>
+</span><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:cowlib</span><span class="p">)</span>
+</span><span class='line'>  <span class="ss">:application</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="ss">:cowboy</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ol>
+<li><p>start listening for HTTP connections via <code>ranch:start_listener]</code> <a href="http://ninenines.eu/docs/en/ranch/HEAD/guide/listeners">xkjdf</a></p></li>
+<li><p>Requests will be forwarded to Handler</p></li>
+<li><p>do our job by <code>plug.call(...)</code></p></li>
+<li></li>
+</ol>
+
+
+
+
+</article>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

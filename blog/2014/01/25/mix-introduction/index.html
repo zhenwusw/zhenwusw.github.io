@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mix introduction - zhenwusw</title>
+  <meta name="author" content="zhen">
+
+  
+  <meta name="description" content="Tweet Mix Introduction Jan 25th, 2014 Combine multiple mix commands by passing them into do block 1 mix do deps.get, compile When we &hellip;, we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="zhenwusw" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">zhenwusw</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">zhenwusw</a></h1>
+  </li>
+	<!-- <a href="https://twitter.com/zhenwusw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @zhenwusw</a> -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">L |> T |> W</h2>
+  </li>
+
+
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
+
+  <li class="link">
+    <a href="http://about.me/zhenwusw/" target="_new">about</a>
+  </li>
+
+<!-- <li class="link">
+  <a href="/learning-dynamo">Learning Dynamo</a>
+</li> -->
+<!-- 
+  <li class="link">
+    <a href="http://twitter.com/zhenwusw/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/zhenwusw/">github</a>
+  </li>
+ -->
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+  <li class="link">
+    <a href="/blog/archives">archives</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Mix Introduction</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-25T11:18:00+08:00" pubdate data-updated="true">Jan 25<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<ul>
+<li>Combine multiple mix commands by passing them into <code>do</code> block</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'>  <span class="n">mix</span> <span class="k">do </span><span class="n">deps</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">compile</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>When we &hellip;, we can see &hellip; after we pull code from dynamo repo</p>
+
+<p>Get Dynamo dependencies and run tests with:
+  <code>MIX_ENV=test mix do deps.get, test</code></p>
+
+<p>Running this command, you will fetch dependencies, compile, and then test the
+framework, make sure you are on the right version with Elixir and Dynamo.</p>
+
+<p>Then runing <code>mix dynamo ../mynamo</code>, Mix will create a directory named mynamo with few files in it:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>➜  dynamo git:(bf86566) ✗ mix dynamo ../mynamo
+</span><span class='line'>* creating README.md
+</span><span class='line'>* creating .gitignore
+</span><span class='line'>* creating mix.lock
+</span><span class='line'>  ...</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Note that I can use <code>mix</code> here because <code>mix</code> is an Elixir executable.
+You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> executable&rsquo;s option</p>
+
+<p><code>➜ bin/elixir -S mix new ./my_project</code></p>
+
+<p><code>bin/elixir</code></p>
+
+<p>So let&rsquo;s see what Mix is:</p>
+
+<h2>MIX &ndash; A BUILD TOOL FOR ELIXIR</h2>
+
+<ol>
+<li><a href="http://elixir-lang.org/getting_started/mix/1.html">Introduction to Mix</a></li>
+<li><a href="">Building OTP apps with Mix</a></li>
+<li><a href="">Creating custom Mix tasks</a></li>
+</ol>
+
+
+<p>Mix is a build tool that provides</p>
+
+<ul>
+<li>creating</li>
+<li>compiling</li>
+<li>testing</li>
+<li>releasing (coming soon&hellip;)</li>
+</ul>
+
+
+<p>which ships with every Elixir release.</p>
+
+
+
+</article>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

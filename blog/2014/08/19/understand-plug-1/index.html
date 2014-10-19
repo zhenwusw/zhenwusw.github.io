@@ -5,11 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>中文 - zhenwusw</title>
+  <title>plug - zhenwusw</title>
   <meta name="author" content="zhen">
 
   
-  <meta name="description" content=" 中文 Mar 23rd, 2014 ">
+  <meta name="description" content="Tweet Plug Aug 19th, 2014 function plugs 1
+(Plug.Conn.t, Plug.opts) :: Plug.Conn.t module plugs 1
+2
+def init(opts)
+def call(conn, _opts) wrappers &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhenwusw.github.io/zh/">
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/08/19/understand-plug-1/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -90,13 +94,23 @@
 
   </header>
   <section id="main">
-    <div>
-<article role="article" class="post">
+    <article class="post">
+  <div class="sharing-box">
   
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
   
   <header>
-    <h2 class="entry-title">中文</h2>
-    <p class="meta">
+    
+      <h2 class="entry-title">Plug</h2>
+    
+    
+      <p class="meta">
+        
 
 
 
@@ -108,15 +122,49 @@
   
 
 
-<time datetime="2014-03-23T11:50:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2014</time></p>
+<time datetime="2014-08-19T20:26:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2014</time>
+        
+      </p>
+    
   </header>
-  
-  
 
-  
+
+<ul>
+<li>function plugs</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="p">(</span><span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="no">Plug</span><span class="o">.</span><span class="n">opts</span><span class="p">)</span> <span class="p">::</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="o">.</span><span class="n">t</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ul>
+<li>module plugs</li>
+</ul>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+</span><span class='line'><span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<ul>
+<li><p>wrappers</p></li>
+<li><p>builder</p></li>
+<li><p>misc</p></li>
+</ul>
+
+
+<p><code>defmacro</code> are only invoked(expanded) in compilation time
+<code>def/defp</code> could be invoked both in compilation time and in runtime</p>
+
+
+
 </article>
 
-</div>
 
     <nav role="navigation" id="pagination">
 

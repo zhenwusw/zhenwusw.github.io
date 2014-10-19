@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>displaying YARV instructions - zhenwusw</title>
+  <meta name="author" content="zhen">
+
+  
+  <meta name="description" content="Tweet Displaying YARV Instructions Jan 18th, 2014 One easy way to see how Ruby compiles your code is with the
+RubyVM::InstructionsSequence Object 1 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zhenwusw.github.io/blog/2014/01/18/displaying-yarv-instructions/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="zhenwusw" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">zhenwusw</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">zhenwusw</a></h1>
+  </li>
+	<!-- <a href="https://twitter.com/zhenwusw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @zhenwusw</a> -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">L |> T |> W</h2>
+  </li>
+
+
+<li class="link">
+  <a href="/zh">中文</a>
+</li>
+
+  <li class="link">
+    <a href="http://about.me/zhenwusw/" target="_new">about</a>
+  </li>
+
+<!-- <li class="link">
+  <a href="/learning-dynamo">Learning Dynamo</a>
+</li> -->
+<!-- 
+  <li class="link">
+    <a href="http://twitter.com/zhenwusw/">twitter</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/zhenwusw/">github</a>
+  </li>
+ -->
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+  <li class="link">
+    <a href="/blog/archives">archives</a>
+  </li>
+</ul>
+
+
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Displaying YARV Instructions</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-18T11:51:00+08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<p>One easy way to see how Ruby compiles your code is with the
+<code>RubyVM::InstructionsSequence Object</code></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">code</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">END</span>
+</span><span class='line'><span class="sh">puts 2+2</span>
+</span><span class='line'><span class="no">END</span>
+</span><span class='line'><span class="nb">puts</span> <span class="ss">RubyVM</span><span class="p">:</span><span class="ss">:InstructionSequence</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">disasm</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>outputs</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>== disasm: &lt;RubyVM::InstructionSequence:&lt;compiled>@&lt;compiled>>==========
+</span><span class='line'>0000 trace            1                                               (   1)
+</span><span class='line'>0002 putself          
+</span><span class='line'>0003 putobject        2
+</span><span class='line'>0005 putobject        2
+</span><span class='line'>0007 opt_plus         &lt;ic:2>
+</span><span class='line'>0009 send             :puts, 1, nil, 8, &lt;ic:1>
+</span><span class='line'>0015 leave</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>As we can see, the line numbers on the left show the position
+of each instruction the bytecode array that the compiler actually
+prouces</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">“</span><span class="n">code</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">END</span>
+</span><span class='line'><span class="sh">10.times do |n|</span>
+</span><span class='line'><span class="sh">  puts n</span>
+</span><span class='line'><span class="sh">end</span>
+</span><span class='line'><span class="no">END</span>
+</span><span class='line'><span class="nb">puts</span> <span class="ss">RubyVM</span><span class="p">:</span><span class="ss">:InstructionSequence</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">disasm</span><span class="err">”</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='plain'><span class='line'>== disasm: &lt;RubyVM::InstructionSequence:&lt;compiled>@&lt;compiled>>==========
+</span><span class='line'>== catch table
+</span><span class='line'>| catch type: break  st: 0002 ed: 0010 sp: 0000 cont: 0010
+</span><span class='line'>|------------------------------------------------------------------------
+</span><span class='line'>0000 trace            1                                               (   1)
+</span><span class='line'>0002 putobject        10
+</span><span class='line'>0004 send             :times, 0, block in &lt;compiled>, 0, &lt;ic:0>
+</span><span class='line'>0010 leave            
+</span><span class='line'>== disasm: &lt;RubyVM::InstructionSequence:block in &lt;compiled>@&lt;compiled>>=
+</span><span class='line'>== catch table
+</span><span class='line'>| catch type: redo   st: 0000 ed: 0012 sp: 0000 cont: 0000
+</span><span class='line'>| catch type: next   st: 0000 ed: 0012 sp: 0000 cont: 0012
+</span><span class='line'>|------------------------------------------------------------------------
+</span><span class='line'>local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1] s3)
+</span><span class='line'>[ 2] n&lt;Arg>     
+</span><span class='line'>0000 trace            1                                               (   2)
+</span><span class='line'>0002 putself          
+</span><span class='line'>0003 getdynamic       n, 0
+</span><span class='line'>0006 send             :puts, 1, nil, 8, &lt;ic:0>
+</span><span class='line'>0012 leave</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>As we can see, Ruby display the two YARV instruction snippets
+seperately. The first corresponds to the global scope and the
+second to the inner block scope.</p>
+
+<p>Here we can see the <code>local table</code>, once Ruby&rsquo;s ompiler runs, the
+information about the block parameter is copied out of the AST
+and into another data structure called the <code>locale table</code>.</p>
+
+
+
+</article>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

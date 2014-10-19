@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dynamo | zhenwusw]]></title>
+  <link href="http://zhenwusw.github.io/blog/categories/dynamo/atom.xml" rel="self"/>
+  <link href="http://zhenwusw.github.io/"/>
+  <updated>2014-10-19T11:07:57+08:00</updated>
+  <id>http://zhenwusw.github.io/</id>
+  <author>
+    <name><![CDATA[zhen]]></name>
+    <email><![CDATA[zhenwusw@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mix introduction]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/25/mix-introduction/"/>
+    <updated>2014-01-25T11:18:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/25/mix-introduction</id>
+    <content type="html"><![CDATA[<ul>
+<li>Combine multiple mix commands by passing them into <code>do</code> block</li>
+</ul>
+
+
+<p><code>elixir
+  mix do deps.get, compile
+</code></p>
+
+<p>When we &hellip;, we can see &hellip; after we pull code from dynamo repo</p>
+
+<p>Get Dynamo dependencies and run tests with:
+  <code>MIX_ENV=test mix do deps.get, test</code></p>
+
+<p>Running this command, you will fetch dependencies, compile, and then test the
+framework, make sure you are on the right version with Elixir and Dynamo.</p>
+
+<p>Then runing <code>mix dynamo ../mynamo</code>, Mix will create a directory named mynamo with few files in it:</p>
+
+<p><code>
+➜  dynamo git:(bf86566) ✗ mix dynamo ../mynamo
+* creating README.md
+* creating .gitignore
+* creating mix.lock
+  ...
+</code></p>
+
+<p>Note that I can use <code>mix</code> here because <code>mix</code> is an Elixir executable.
+You can also pass <code>-S mix new ./mynamo</code> as <code>bin/elixir</code> executable&rsquo;s option</p>
+
+<p><code>➜ bin/elixir -S mix new ./my_project</code></p>
+
+<p><code>bin/elixir</code></p>
+
+<p>So let&rsquo;s see what Mix is:</p>
+
+<h2>MIX &ndash; A BUILD TOOL FOR ELIXIR</h2>
+
+<ol>
+<li><a href="http://elixir-lang.org/getting_started/mix/1.html">Introduction to Mix</a></li>
+<li><a href="">Building OTP apps with Mix</a></li>
+<li><a href="">Creating custom Mix tasks</a></li>
+</ol>
+
+
+<p>Mix is a build tool that provides</p>
+
+<ul>
+<li>creating</li>
+<li>compiling</li>
+<li>testing</li>
+<li>releasing (coming soon&hellip;)</li>
+</ul>
+
+
+<p>which ships with every Elixir release.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Dynamo] Code organization in environments]]></title>
+    <link href="http://zhenwusw.github.io/blog/2014/01/12/code-organization-in-environments/"/>
+    <updated>2014-01-12T11:07:00+08:00</updated>
+    <id>http://zhenwusw.github.io/blog/2014/01/12/code-organization-in-environments</id>
+    <content type="html"><![CDATA[<p>First of all, Dynamo is a <a href="http://elixir-lang.org/getting_started/mix/1.html">mix</a> project, which shipping with environments independence naturally.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mix.exs </span></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='exs'><span class='line'><span class="ss">deps:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="c1"># dev, test, prod</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>coming soon&hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>
