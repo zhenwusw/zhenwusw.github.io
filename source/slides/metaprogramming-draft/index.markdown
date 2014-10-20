@@ -5,14 +5,14 @@ date: 2014-10-19 10:00
 theme: beige
 ---
 
-<!-- Slide one -->
+<!-- Slide One -->
 <section>
   <section><h2>Metaprogramming</h2></section>
   <section>Code that writes code</section>
   <section>"Dynamic" vs "Static"</section>
 </section>
 
-<!-- Slide two -->
+<!-- Slide Two -->
 <section>
   <section><h2>Ruby</h2></section>
   <section>Dynamic programming language</section>
@@ -20,12 +20,12 @@ theme: beige
   <section>Flexible</section>
 </section>
 
-<!-- Slide three -->
+<!-- Slide Three -->
 <section>
 {% img center /images/slides/ruby-object-model.png 500 500 %}
 </section>
 
-<!-- Slide four -->
+<!-- Slide Four -->
 <section>
 {% img center /images/slides/ruby-mixin.png 500 500 %}
 </section>
