@@ -79,12 +79,16 @@
         <lastmod>2014-09-22T10:43:02+08:00</lastmod>
     </url>
     <url>
+        <loc>http://zhenwusw.github.io/blog/2014/10/20/metaprogramming/</loc>
+        <lastmod>2014-10-20T23:40:08+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://zhenwusw.github.io/blog/archives/</loc>
-        <lastmod>2014-10-19T11:07:16+08:00</lastmod>
+        <lastmod>2014-10-20T23:40:08+08:00</lastmod>
     </url>
     <url>
         <loc>http://zhenwusw.github.io/</loc>
-        <lastmod>2014-10-19T11:07:16+08:00</lastmod>
+        <lastmod>2014-10-20T23:40:08+08:00</lastmod>
     </url>
     <url>
         <loc>http://zhenwusw.github.io/learning-dynamo/</loc>
@@ -95,8 +99,8 @@
         <lastmod>2014-01-24T23:05:46+08:00</lastmod>
     </url>
     <url>
-        <loc>http://zhenwusw.github.io/slides/reveal-test/</loc>
-        <lastmod>2014-10-19T10:50:26+08:00</lastmod>
+        <loc>http://zhenwusw.github.io/slides/metaprogramming-draft/</loc>
+        <lastmod>2014-10-20T22:47:38+08:00</lastmod>
     </url>
     <url>
         <loc>http://zhenwusw.github.io/zh/</loc>

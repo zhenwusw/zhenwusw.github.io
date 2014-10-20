@@ -9,7 +9,8 @@
   <meta name="author" content="zhen">
 
   
-  <meta name="description" content="Tweet Elixir Meta Programming vs Ruby Meta Programming Sep 17th, 2014 Examples Meta programming wiki: minimize the number of lines of code to &hellip;">
+  <meta name="description" content="Tweet Metaprogramming Ruby vs Elixir Oct 20th, 2014 Metaprogramming Writing code that writes code
+Dynamic metaprogramming vs Static metaprogramming &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -57,9 +58,9 @@
   </li>
 
 
-<li class="link">
+<!-- <li class="link">
   <a href="/zh">中文</a>
-</li>
+</li> -->
 
   <li class="link">
     <a href="http://about.me/zhenwusw/" target="_new">about</a>
@@ -91,6 +92,256 @@
   </header>
   <section id="main">
       
+  
+  
+    <article class="post">
+      <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io/blog/2014/10/20/metaprogramming/" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io/blog/2014/10/20/metaprogramming/" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+      
+  <header>
+    
+      <h2 class="entry-title">
+        
+        <a href="/blog/2014/10/20/metaprogramming/">Metaprogramming Ruby vs Elixir</a>
+        
+      </h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-20T22:49:00+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <p><embed src='/slides/metaprogramming-draft' allowFullScreen='true' width='640' height='640' align='middle'></embed></p>
+
+<h1>Metaprogramming</h1>
+
+<ul>
+<li>Writing code that writes code</li>
+<li>Dynamic metaprogramming vs Static metaprogramming</li>
+</ul>
+
+
+<blockquote><p>Code that manipulate itself at runtime: so called &lsquo;dynamic&rsquo; metaprogramming</p></blockquote>
+
+<p>.</p>
+
+<blockquote><p>powerful introspection</p></blockquote>
+
+<h1>Ruby</h1>
+
+<h2><a href="http://en.wikipedia.org/wiki/Dynamic_programming_language">Dynamic programming language</a></h2>
+
+<ul>
+<li>Ruby has it&rsquo;s own VM call YARM: tokenizing, parsing, compiling, executing</li>
+<li>Ruby doesn&rsquo;t do type checking
+** code optimization are done at compilation time?</li>
+</ul>
+
+
+<blockquote><p> Type checking, register allocation, code generation, and code optimization are typically done at compile time</p></blockquote>
+
+<h2>Pure OO</h2>
+
+<ul>
+<li>numbers and other primitive types are not objects in some other languages</li>
+<li><strong>Everything is object</strong>: that&rsquo;s an important rule</li>
+<li>instance variable + methods to all types of objects</li>
+<li>operators are syntactic sugar for methods: e.g. <code>+</code></li>
+</ul>
+
+
+<h2>Flexible</h2>
+
+<ul>
+<li>Allow users to freely alter its parts at runtime</li>
+<li>Functional support via Closures: block, lambda, proc which can be attached to any method, heavily used in ruby&rsquo;s Enumerable module</li>
+<li>Single inheritance + Mixin</li>
+</ul>
+
+
+<p>On top of that, Ruby provides many ways to inspect and change itself dynamically, to query information about itself &mdash; methods, instance
+variables, superclasses, to defining a method or a constant.</p>
+
+<p>Not making a deal between you and compiler, defining class in Ruby is actually running code</p>
+
+<p>Adding / removing methods: it can deprecate many boilerplate code, such as getter and setter. In some other OO languages, Class acts like a contract/template, it allows to spawn many instances as it describes, but doesn&rsquo;t allow itself to be modified. So you need to specify every single method in this template definition, we call it boilerplate methods.Ruby totally avoid this via <code>define_methods</code>, <code>method_missing</code> &hellip;</p>
+
+<h2>Ruby object model: rules</h2>
+
+<p> <img class="center" src="/images/2014-10/1.png" width="500" height="500"></p>
+
+<p>regular objects have instance variables, class pointer
+class objects have class instance variables, class pointer, superclass pointer</p>
+
+<p><img class="center" src="/images/2014-10/2.png" width="300" height="500"></p>
+
+<p>   class inheritance + mixin
+   <code>MyClass.ancestors =&gt; ...</code>
+   Kernel is a module, which was included in Object class</p>
+
+<p> <img class="center" src="/images/2014-10/3.png" width="500" height="500"></p>
+
+<p>   singleton methods vs instance methods vs class methods
+   singleton class vs metaclass</p>
+
+<blockquote><p>All metaclasses are singleton classes, but not all singleton classes are metaclasses. Ruby automatically creates a metaclass for every class you create and uses it to hold class methods that you might declare later.</p></blockquote>
+
+<ul>
+<li><p><code>include</code> vs <code>extend</code> vs <code>ActiveSupport::Concern</code></p></li>
+<li><p>Method lookup &hellip;</p></li>
+</ul>
+
+
+<h2>Useful skills</h2>
+
+<ol>
+<li>define_method + send</li>
+<li>method_missing + const_missing</li>
+<li>instance_variable_get/set</li>
+<li>instance_methods</li>
+<li>instance_eval + class_eval</li>
+<li>Hooks: inherited, included, extend_object, method_added, method_removed, method_undefined</li>
+</ol>
+
+
+<h2>How these useful</h2>
+
+<ul>
+<li>HashSerializable</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>hash_serializable.rb</span><a href='/downloads/code/hash_serializable.rb' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">module</span> <span class="nn">HashSerializable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">act_as_serializable</span> <span class="n">base</span><span class="p">,</span> <span class="n">options</span>
+</span><span class='line'>    <span class="n">serialize</span> <span class="n">base</span><span class="p">,</span> <span class="no">Hash</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span>             <span class="c1"># def auth_info</span>
+</span><span class='line'>      <span class="c1"># Return empty hash if nil base,      #   read_attribute(:auth_info) || {}</span>
+</span><span class='line'>      <span class="c1"># and reduce verbose `try` usage      # end</span>
+</span><span class='line'>      <span class="n">read_attribute</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">define_method</span> <span class="s2">&quot;clear_</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">!&quot;</span> <span class="k">do</span>     <span class="c1"># def clear_auth_info!</span>
+</span><span class='line'>      <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">=&quot;</span><span class="p">,</span> <span class="p">{})</span>                 <span class="c1">#   self.auth_info = {}</span>
+</span><span class='line'>      <span class="n">save!</span>                                <span class="c1">#   save!</span>
+</span><span class='line'>    <span class="k">end</span>                                    <span class="c1"># end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">options</span><span class="o">[</span><span class="ss">:on</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">attribute</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">attribute</span> <span class="o">=</span> <span class="n">attribute</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">define_method</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span> <span class="k">do</span>                 <span class="c1"># def access_token</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">[</span><span class="n">attribute</span><span class="o">]</span>                     <span class="c1">#   auth_info[&quot;access_token&quot;]</span>
+</span><span class='line'>      <span class="k">end</span>                                         <span class="c1"># end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">=&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>                  <span class="c1"># def access_token= value</span>
+</span><span class='line'>        <span class="n">new_base</span> <span class="o">=</span> <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">({</span> <span class="n">attribute</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="p">})</span>      <span class="c1">#   auth_info[&quot;access_token&quot;] = value</span>
+</span><span class='line'>        <span class="c1"># Set new base to trigger Rails field changed event      # end</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">=&quot;</span><span class="p">,</span> <span class="n">new_base</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">?&quot;</span> <span class="k">do</span>                <span class="c1"># def access_token?</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">[</span><span class="n">attribute</span><span class="o">].</span><span class="n">present?</span>                 <span class="c1">#   auth_info[&quot;access_token&quot;].present?</span>
+</span><span class='line'>      <span class="k">end</span>                                              <span class="c1"># end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">_changed?&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kp">false</span> <span class="k">unless</span> <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">_changed?&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">presence</span> <span class="o">!=</span> <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">_was&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">presence</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">_was&quot;</span> <span class="k">do</span>               <span class="c1"># def access_token_was</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">_was&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{})</span><span class="o">[</span><span class="n">attribute</span><span class="o">]</span>           <span class="c1">#   (auth_info_was || {})[&quot;access_token&quot;]</span>
+</span><span class='line'>      <span class="k">end</span>                                                <span class="c1"># end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;remove_</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">!&quot;</span> <span class="k">do</span>           <span class="c1"># def remove_access_token!</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>                     <span class="c1">#   auth_info.delete(&quot;access_token&quot;)</span>
+</span><span class='line'>        <span class="n">save!</span>                                            <span class="c1">#   save!</span>
+</span><span class='line'>      <span class="k">end</span>                                                <span class="c1"># end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>minitest framework</li>
+</ul>
+
+
+  
+  
+
+
+    </article>
   
   
     <article class="post">
@@ -1048,175 +1299,6 @@ Read the Stacktrace information section below for more</li>
 
 <ul>
 <li></li>
-</ul>
-
-
-  
-  
-
-
-    </article>
-  
-  
-    <article class="post">
-      <div class="sharing-box">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io/blog/2014/01/27/plug/" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io/blog/2014/01/27/plug/" data-size="large">Tweet</a>
-  
-  
-  
-</div>
-
-      
-  <header>
-    
-      <h2 class="entry-title">
-        
-        <a href="/blog/2014/01/27/plug/">Plug</a>
-        
-      </h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-27T20:26:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <h1>what&rsquo;s plug in Elixir</h1>
-
-<blockquote><p>A plug is <strong>any function</strong>* that receives a connection and a set of options as arguments and returns a tuple in the format { tag :: atom, conn :: Plug.Conn.t }</p></blockquote>
-
-<p>so it consists of three parts:</p>
-
-<ul>
-<li>A Elixir function</li>
-<li>Receives connection and options</li>
-<li>Return a tuple { tag :: atom, conn :: Plug.Conn }</li>
-</ul>
-
-
-<p>If you comes from Ruby you&rsquo;ll find it similiar to [Rack][rack-link]</p>
-
-<p>&hellip;</p>
-
-<h1>First try of Plug</h1>
-
-<p>Plug let us start with a single file Plug application:</p>
-
-<p>(actually not so <em>single</em> because you need to put in under the <em>plug</em>
-directory for now since plug is naturally a <code>mix</code> project)</p>
-
-<figure class='code'><figcaption><span>first_plug.exs</span><a href='/downloads/code/elixir/first_plug.exs' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='code'><pre><code class='exs'><span class='line'><span class="k">defmodule</span> <span class="no">FirstPlug</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  </span><span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span> <span class="k">do</span>
-</span><span class='line'><span class="k">    </span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span>
-</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">put_resp_content_type</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
-</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">send_resp</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="n">conn</span> <span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Running FirstPlug with Cowboy on http://localhost:4000&quot;</span>
-</span><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">http</span> <span class="no">FirstPlug</span><span class="p">,</span> <span class="p">[]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Run: <code>mix run --no-halt first_plug.exs</code></p>
-
-<p>then navigate to <code>http://localhost:4000</code> in your any of browser</p>
-
-<h2>Adapters</h2>
-
-<p>Plug aims to be a common pattern or a bridge attaching the Webservers and applications in Elixir world. And here we would like to see how it connects
-Cowboy and our single FirstPlug.</p>
-
-<p><code>Plug.Adapters.Cowboy.http FirstPlug, []</code></p>
-
-<p>The first argument can be any module which contains <code>call</code> method, we&rsquo;ll deep
-into the <code>call</code> method lately.</p>
-
-<h2>plug router</h2>
-
-<p>The router is a plug, which means it can be invoked as:</p>
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>Plug.Router</code> compiles all of your routes into a single function and relies on
-the EVM to optimize the underlying routes into a tree lookup instead of a
-linear lookup that would instead match route-per-route. That means route lookup
-are extremly fast in Plug!</p>
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  </span><span class="kn">quote</span> <span class="ss">location:</span> <span class="ss">:keep</span> <span class="k">do</span>
-</span><span class='line'><span class="k">    </span><span class="kn">import</span> <span class="kn">unquote</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="k">      </span><span class="n">dispatch</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">path_info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">defoverridable</span> <span class="p">[</span><span class="ss">call:</span> <span class="m">2</span><span class="p">]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>defoverridable</code> &hellip;</p>
-
-<h2>Plug test</h2>
-
-<h2>plug endpoint</h2>
-
-<p>The plug endpoint here is the <code>call</code> method which receives two parameters:
-<code>Plug.Conn</code> record and Keyword options. Returns can be any atom, with two values have specific meaning to plug:</p>
-
-<ul>
-<li><code>ok</code> &ndash; pass the connection to the next plug in the stack</li>
-<li><code>halt</code> &ndash; halts the current and all other stacks</li>
-</ul>
-
-
-<p>Any other values means the connection should be halted &hellip;</p>
-
-<h2></h2>
-
-<p>Inside <code>Plug.Connection</code> module, we can see the <code>Plug.Conn</code> was defined with</p>
-
-<ul>
-<li>request fields</li>
-<li>response fields</li>
-<li><p>connection fields</p></li>
-<li><p>fetchable fields</p></li>
-<li>unfetchable fields</li>
 </ul>
 
 
