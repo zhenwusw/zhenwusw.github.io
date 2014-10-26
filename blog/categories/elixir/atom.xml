@@ -4,7 +4,7 @@
   <title><![CDATA[Category: elixir | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/elixir/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-10-20T23:41:53+08:00</updated>
+  <updated>2014-10-26T14:24:13+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -136,8 +136,9 @@ that anonymous class in the chain</li>
 <h2>Elixir</h2>
 
 <ul>
-<li>Macros system</li>
-<li></li>
+<li><p>Macros system</p>
+
+<p>Elixir itself is primary buit with macros</p></li>
 </ul>
 
 
