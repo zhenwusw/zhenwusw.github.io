@@ -4,7 +4,7 @@
   <title><![CDATA[zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-10-26T14:24:13+08:00</updated>
+  <updated>2014-10-27T10:13:13+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -222,7 +222,244 @@ class objects have class instance variables, class pointer, superclass pointer</
 </ul>
 
 
-<h2>Elixir</h2>
+<h1>Elixir</h1>
+
+<p>Ruby Router vs Elixir Router
+Ruby test framework vs Elixir test framework</p>
+
+<p>Runtime metaprogramming</p>
+
+<p>Compile-time metaprogramming</p>
+
+<ul>
+<li>no performance penalty</li>
+</ul>
+
+
+<h2>AST fragment is a triplet which consists of</h2>
+
+<ul>
+<li>operation</li>
+<li>context</li>
+<li>arguments</li>
+</ul>
+
+
+<p>quoted expression is an Elixir term</p>
+
+<p>compiler use quoted expression to generate final bytecode</p>
+
+<p>evaluate a quoted expression by <code>Code.eval_quoted(quoted)</code></p>
+
+<p>Macro evaluation is done by the compiler, before that, the quoted
+expression is not semantically verified.</p>
+
+<p>So we can inject that AST fragment to where <code>a</code> and <code>b</code> are valid
+identifier.</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="n">sum_expr</span> <span class="o">=</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span><span class='line'><span class="n">bind_expr</span> <span class="o">=</span> <span class="kn">quote</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="n">a</span> <span class="o">=</span> <span class="m">1</span>
+</span><span class='line'>    <span class="n">b</span> <span class="o">=</span> <span class="m">2</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="n">final_expr</span> <span class="o">=</span> <span class="kn">quote</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">unquote</span><span class="p">(</span><span class="n">bind_expr</span><span class="p">)</span>
+</span><span class='line'>  <span class="kn">unquote</span><span class="p">(</span><span class="n">sum_expr</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We produced a new AST fragment that conbines both expressions.</p>
+
+<p><strong>this is the core of meta-programming approach in Elixir</strong></p>
+
+<blockquote><p>quote: code generation factory</p>
+
+<p>unquote: code generation tool</p></blockquote>
+
+<p><code>quote</code> vs <code>unquote</code>
+<code>quote</code> vs <code>Macro.to_string</code></p>
+
+<p>transformation(function invocation) happens in the expansion time</p>
+
+<p><strong>Macro receives quoted expression</strong></p>
+
+<p>In runtime, we don&rsquo;t have an access to AST anymore</p>
+
+<p><code>quoted = quote do Tracer.trace(1+2) end</code></p>
+
+<p>vs</p>
+
+<p><code>expanded = Macro.expand(quoted, __ENV__)</code></p>
+
+<p>Macro call is actually expanded AST fragments&hellip;</p>
+
+<blockquote><p>the same things happen when
+we&rsquo;re building our projects with mix or elixirc.</p></blockquote>
+
+<h2>Elixir AST: raw AST, final AST</h2>
+
+<h2>quote/unquote constructor</h2>
+
+<h2>Compile phase</h2>
+
+<h2>Macro mechanics</h2>
+
+<ul>
+<li>Expansion phase</li>
+<li>this is where compiler calls various macros</li>
+<li>receives input AST, produce output AST</li>
+<li>macro is replaced by the output AST</li>
+<li>re-expanded &hellip; until there&rsquo;s nothing left to expand</li>
+</ul>
+
+
+<blockquote><p>How can Elixir code run before it is produced?</p></blockquote>
+
+<p> It can&rsquo;t. To call a macro, the container module must already be
+ compiled, that&rsquo;s why <code>require</code> or <code>import</code> is needed.</p>
+
+<blockquote><p>When we require a module, we instruct the Elixir to hold the compilation of the current module until the required module is compiled and loaded into the compiler run-time (the Erlang VM instance where compiler is running)</p></blockquote>
+
+<ul>
+<li>Hygiene</li>
+</ul>
+
+
+<blockquote><p>This is an example of a macro introducing a variable that must not be hygienic. The variable conn is introduced by the get macro, but must be visible to the code where the macro is called.</p></blockquote>
+
+<ul>
+<li>macro invocation</li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="n">get</span> <span class="s2">&quot;/resource&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">get</span> <span class="s2">&quot;/resource&quot;</span><span class="p">,</span> <span class="p">[</span><span class="k">do</span><span class="p">:</span> <span class="o">...</span><span class="p">]</span> <span class="c1"># do keyword</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby&rsquo;s closure: <code>block.call</code>
+Elixir&rsquo;s macro do-keyword inject</p>
+
+<h2>function generation</h2>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">def</span> <span class="n">my_fun</span> <span class="k">do</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span><span class="p">(</span><span class="n">my_fun</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="p">(</span><span class="o">...</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>def macro will receive the quoted representation which will, among other things, contain :my_fun.</p>
+
+<p>Whenever you pass a do&hellip;end block to a macro, it is the same as passing a keywords list with a :do key.</p>
+
+<p>for many constants (atoms, numbers, strings), the quoted representation is exactly the same as the input value.</p>
+
+<p>two element tuples and lists will retain their structure when quoted.</p></blockquote>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="n">iex</span><span class="p">(</span><span class="m">7</span><span class="p">)</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do </span><span class="p">[</span><span class="ss">a:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">b:</span> <span class="m">2</span><span class="p">]</span> <span class="k">end</span>
+</span><span class='line'><span class="p">[</span><span class="ss">a:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">b:</span> <span class="m">2</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>It receives some AST fragments, and combines them together with the boilerplate code, to generate the final result.</strong></p>
+
+<p> generic code is implemented as macro function
+ specific code <code>use</code> macro function</p>
+
+<ul>
+<li><code>use</code>: Elixir mixin, <code>__using__</code></li>
+</ul>
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">MyRouter</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">get</span> <span class="s2">&quot;/hello&quot;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;Hi!&quot;</span><span class="p">}</span>    <span class="c1"># macro invocation</span>
+</span><span class='line'>  <span class="n">get</span> <span class="s2">&quot;/goodbye&quot;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;Bye!&quot;</span><span class="p">}</span> <span class="c1"># macro invocation</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">MyRouter</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  def</span> <span class="n">match</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">do_match</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">get</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">post</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>input AST is analyzed and parse in advance</li>
+<li>Parse input AST fragments to get some specific informations</li>
+</ul>
+
+
+<p><strong>Ruby reopen class, define method dynamically, closure</strong>
+<strong>Elixir reassembles AST</strong></p>
+
+<p>via pattern matching</p>
+
+<p>prefer runtime abstraction</p>
+
+<p><code>assert expected == required</code></p>
+
+<p><code>defmacro assert({:==, _, [lhs, rhs]} = expr)</code></p>
+
+<blockquote><p>binary operators are quoted as two arguments function calls.</p></blockquote>
 ]]></content>
   </entry>
   
@@ -367,9 +604,37 @@ that anonymous class in the chain</li>
 <ul>
 <li><p>Macros system</p>
 
-<p>Elixir itself is primary buit with macros</p></li>
+<p>Elixir itself is primary buit with macros</p>
+
+<p>** if, unless, conn
+   def, defmodule</p>
+
+<p>** Full access to Elixir at compile time</p>
+
+<p><code>elixir
+  defmodule Hello do
+    IO.puts "Any code in here is valid!"
+  end
+</code></p>
+
+<p>** Elixir code can be represented entirely by Elixir&rsquo;s own data structure</p>
+
+<p><code>elixir
+iex&gt; quote do: (1 + 2) - 5 * 10
+ {:-, [],
+  [{:+, [], [1, 2]},
+   {:*, [], [5, 10]}]}
+</code></p></li>
+<li><p>Returns the representation of any expression (AST)</p></li>
 </ul>
 
+
+<p><strong> AST is represented as a series of three element tuples
+</strong> The first element is always an atom or another tuple
+<strong> The second element represents metadata
+</strong> The third element is the arguments for the function call</p>
+
+<blockquote><p>This keeps the language core minimal</p></blockquote>
 
 <h3>Links</h3>
 

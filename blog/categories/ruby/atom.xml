@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-10-26T14:24:13+08:00</updated>
+  <updated>2014-10-27T10:13:13+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -138,9 +138,37 @@ that anonymous class in the chain</li>
 <ul>
 <li><p>Macros system</p>
 
-<p>Elixir itself is primary buit with macros</p></li>
+<p>Elixir itself is primary buit with macros</p>
+
+<p>** if, unless, conn
+   def, defmodule</p>
+
+<p>** Full access to Elixir at compile time</p>
+
+<p><code>elixir
+  defmodule Hello do
+    IO.puts "Any code in here is valid!"
+  end
+</code></p>
+
+<p>** Elixir code can be represented entirely by Elixir&rsquo;s own data structure</p>
+
+<p><code>elixir
+iex&gt; quote do: (1 + 2) - 5 * 10
+ {:-, [],
+  [{:+, [], [1, 2]},
+   {:*, [], [5, 10]}]}
+</code></p></li>
+<li><p>Returns the representation of any expression (AST)</p></li>
 </ul>
 
+
+<p><strong> AST is represented as a series of three element tuples
+</strong> The first element is always an atom or another tuple
+<strong> The second element represents metadata
+</strong> The third element is the arguments for the function call</p>
+
+<blockquote><p>This keeps the language core minimal</p></blockquote>
 
 <h3>Links</h3>
 
