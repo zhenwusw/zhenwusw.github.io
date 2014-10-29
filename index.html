@@ -565,237 +565,6 @@ Elixir&rsquo;s macro do-keyword inject</p>
     <article class="post">
       <div class="sharing-box">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io/blog/2014/09/17/elixir-meta-programming-vs-ruby-meta-programming/" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io/blog/2014/09/17/elixir-meta-programming-vs-ruby-meta-programming/" data-size="large">Tweet</a>
-  
-  
-  
-</div>
-
-      
-  <header>
-    
-      <h2 class="entry-title">
-        
-        <a href="/blog/2014/09/17/elixir-meta-programming-vs-ruby-meta-programming/">Elixir Meta Programming vs Ruby Meta Programming</a>
-        
-      </h2>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-17T16:34:00+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <h2>Examples</h2>
-
-<h2>Meta programming</h2>
-
-<ul>
-<li><p>wiki: minimize the number of lines of code to express a solution
-      hence reducing development time</p></li>
-<li><p>Code that write code (DRY in language layer)</p></li>
-<li><p>Declarative programming (DSL)</p></li>
-<li><p>Compile-time vs Runtime</p></li>
-</ul>
-
-
-<h2>Ruby</h2>
-
-<ul>
-<li><p>Ruby is interpreted, not compiled</p></li>
-<li><p>Calling methods dynamically</p>
-
-<p><strong> parametized method names
-</strong> callbacks and observers
-<strong> convention-oriented code
-</strong> working with method collections</p></li>
-<li><p>call methods dynamically: <code>send</code></p>
-
-<p> unit test: pattern dispatch</p></li>
-<li><p>define methods dynamically:</p></li>
-</ul>
-
-
-<p> <code>Module#define_method</code></p>
-
-<ul>
-<li><p>Ruby object model I: classes, objects, modules, blocks</p>
-
-<p><strong> Object introspection
-</strong></p></li>
-</ul>
-
-
-<h3>OOP tactics</h3>
-
-<ul>
-<li>Open classes</li>
-</ul>
-
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">to_alphanumeric</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">gsub</span> <span class="sr">/[^\w\s]/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">to_alphanumeric</span><span class="p">(</span><span class="s1">&#39;#3, the *Magic, Number*?&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">more</span> <span class="n">object</span><span class="o">-</span><span class="n">oriented</span>
-</span><span class='line'><span class="s1">&#39;#3, the *Magic, Number*?&#39;</span><span class="o">.</span><span class="n">to_alphanumeric</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Money</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Numeric</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">to_money</span>
-</span><span class='line'>    <span class="no">Money</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="mi">10000</span><span class="o">.</span><span class="n">to_money</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Open class will cause some overwrite issues. Monkey patch</li>
-<li>can be difficult to track in large code base</li>
-<li><p>Ruby 2.0 has confined limited scoped open classes?</p></li>
-<li><p>objects of the same class that carry different sets of
-instance variables.</p></li>
-</ul>
-
-
-<p><strong> Method lookup </strong>: <code>receiver</code> and <code>ancestors chain</code>
-<strong> Ruby Object Model </strong>
-  this flexibility is typical of Ruby&rsquo;s metaprogramming.
-* while other programming languages allow you to read class-related
-  information, Ruby allows you to write that information at runtime
-  <code>Class.new</code> to create new classes at runtime
-* refer to &ldquo;Objects and Classes Wrap-up&rdquo;</p>
-
-<ul>
-<li>mixin creates a anonymous class which wraps the module and inserts
-that anonymous class in the chain</li>
-</ul>
-
-
-<p>&amp;&amp; 统一能最大发挥效能</p>
-
-<p>  Ruby&rsquo;s all is objects
-  Elixir&rsquo;s uniform AST</p>
-
-<ul>
-<li>Extensible type system</li>
-</ul>
-
-
-<p><code>define_method</code>, <code>method_missing</code>, <code>method_removed</code>,</p>
-
-<p><code>method_added</code>, <code>class_eval</code>, <code>instance_eval</code>, <code>block.binding</code></p>
-
-<p><code>foo.send :bar</code>, <code>class &lt;&lt; self</code>, <code>eval</code></p>
-
-<p><code>Class.new</code>, <code>modudle_eval</code>, <code>instance_variable_get</code>,</p>
-
-<p><code>instance_variable_set</code>, <code>block.call</code></p>
-
-<h2>Elixir</h2>
-
-<ul>
-<li><p>Macros system</p>
-
-<p>Elixir itself is primary buit with macros</p>
-
-<p>** if, unless, conn
-   def, defmodule</p>
-
-<p>** Full access to Elixir at compile time</p>
-
-<p><code>elixir
-  defmodule Hello do
-    IO.puts "Any code in here is valid!"
-  end
-</code></p>
-
-<p>** Elixir code can be represented entirely by Elixir&rsquo;s own data structure</p>
-
-<p><code>elixir
-iex&gt; quote do: (1 + 2) - 5 * 10
- {:-, [],
-  [{:+, [], [1, 2]},
-   {:*, [], [5, 10]}]}
-</code></p></li>
-<li><p>Returns the representation of any expression (AST)</p></li>
-</ul>
-
-
-<p><strong> AST is represented as a series of three element tuples
-</strong> The first element is always an atom or another tuple
-<strong> The second element represents metadata
-</strong> The third element is the arguments for the function call</p>
-
-<blockquote><p>This keeps the language core minimal</p></blockquote>
-
-<h3>Links</h3>
-
-<ul>
-<li><a href="http://elixir-lang.org/getting_started/meta/1.html">http://elixir-lang.org/getting_started/meta/1.html</a></li>
-<li><a href="http://elixir-lang.org/getting_started/meta/2.html">http://elixir-lang.org/getting_started/meta/2.html</a></li>
-<li><p><a href="http://elixir-lang.org/getting_started/meta/3.html">http://elixir-lang.org/getting_started/meta/3.html</a></p></li>
-<li><p><a href="http://www.theerlangelist.com/">http://www.theerlangelist.com/</a></p></li>
-</ul>
-
-
-<h2>Inspired by</h2>
-
-<ul>
-<li>metaprogramming with ruby PPT</li>
-</ul>
-
-
-  
-  
-
-
-    </article>
-  
-  
-    <article class="post">
-      <div class="sharing-box">
-  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io/blog/2014/09/15/why-we-should-learn-fp/" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io/blog/2014/09/15/why-we-should-learn-fp/" data-size="large">Tweet</a>
   
   
@@ -1546,6 +1315,175 @@ Read the Stacktrace information section below for more</li>
 
 <ul>
 <li></li>
+</ul>
+
+
+  
+  
+
+
+    </article>
+  
+  
+    <article class="post">
+      <div class="sharing-box">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zhenwusw.github.io/blog/2014/01/27/plug/" data-via="zhenwusw" data-counturl="http://zhenwusw.github.io/blog/2014/01/27/plug/" data-size="large">Tweet</a>
+  
+  
+  
+</div>
+
+      
+  <header>
+    
+      <h2 class="entry-title">
+        
+        <a href="/blog/2014/01/27/plug/">Plug</a>
+        
+      </h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-27T20:26:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <h1>what&rsquo;s plug in Elixir</h1>
+
+<blockquote><p>A plug is <strong>any function</strong>* that receives a connection and a set of options as arguments and returns a tuple in the format { tag :: atom, conn :: Plug.Conn.t }</p></blockquote>
+
+<p>so it consists of three parts:</p>
+
+<ul>
+<li>A Elixir function</li>
+<li>Receives connection and options</li>
+<li>Return a tuple { tag :: atom, conn :: Plug.Conn }</li>
+</ul>
+
+
+<p>If you comes from Ruby you&rsquo;ll find it similiar to [Rack][rack-link]</p>
+
+<p>&hellip;</p>
+
+<h1>First try of Plug</h1>
+
+<p>Plug let us start with a single file Plug application:</p>
+
+<p>(actually not so <em>single</em> because you need to put in under the <em>plug</em>
+directory for now since plug is naturally a <code>mix</code> project)</p>
+
+<figure class='code'><figcaption><span>first_plug.exs</span><a href='/downloads/code/elixir/first_plug.exs' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='code'><pre><code class='exs'><span class='line'><span class="k">defmodule</span> <span class="no">FirstPlug</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Connection</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span>
+</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">put_resp_content_type</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
+</span><span class='line'>           <span class="o">|&gt;</span> <span class="n">send_resp</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="n">conn</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;Running FirstPlug with Cowboy on http://localhost:4000&quot;</span>
+</span><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">http</span> <span class="no">FirstPlug</span><span class="p">,</span> <span class="p">[]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Run: <code>mix run --no-halt first_plug.exs</code></p>
+
+<p>then navigate to <code>http://localhost:4000</code> in your any of browser</p>
+
+<h2>Adapters</h2>
+
+<p>Plug aims to be a common pattern or a bridge attaching the Webservers and applications in Elixir world. And here we would like to see how it connects
+Cowboy and our single FirstPlug.</p>
+
+<p><code>Plug.Adapters.Cowboy.http FirstPlug, []</code></p>
+
+<p>The first argument can be any module which contains <code>call</code> method, we&rsquo;ll deep
+into the <code>call</code> method lately.</p>
+
+<h2>plug router</h2>
+
+<p>The router is a plug, which means it can be invoked as:</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="p">[])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>Plug.Router</code> compiles all of your routes into a single function and relies on
+the EVM to optimize the underlying routes into a tree lookup instead of a
+linear lookup that would instead match route-per-route. That means route lookup
+are extremly fast in Plug!</p>
+
+<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="kn">quote</span> <span class="ss">location:</span> <span class="ss">:keep</span> <span class="k">do</span>
+</span><span class='line'><span class="k">    </span><span class="kn">import</span> <span class="kn">unquote</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="k">      </span><span class="n">dispatch</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">path_info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">defoverridable</span> <span class="p">[</span><span class="ss">call:</span> <span class="m">2</span><span class="p">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>defoverridable</code> &hellip;</p>
+
+<h2>Plug test</h2>
+
+<h2>plug endpoint</h2>
+
+<p>The plug endpoint here is the <code>call</code> method which receives two parameters:
+<code>Plug.Conn</code> record and Keyword options. Returns can be any atom, with two values have specific meaning to plug:</p>
+
+<ul>
+<li><code>ok</code> &ndash; pass the connection to the next plug in the stack</li>
+<li><code>halt</code> &ndash; halts the current and all other stacks</li>
+</ul>
+
+
+<p>Any other values means the connection should be halted &hellip;</p>
+
+<h2></h2>
+
+<p>Inside <code>Plug.Connection</code> module, we can see the <code>Plug.Conn</code> was defined with</p>
+
+<ul>
+<li>request fields</li>
+<li>response fields</li>
+<li><p>connection fields</p></li>
+<li><p>fetchable fields</p></li>
+<li>unfetchable fields</li>
 </ul>
 
 
