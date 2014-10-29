@@ -7,8 +7,7 @@
 		<meta name="author" content="zhen">
 
 	  
-	  <meta name="description" content=" Metaprogramming Code that writes code &ldquo;Dynamic&rdquo; vs &ldquo;Static&rdquo; Ruby Dynamic programming language Pure OO Flexible Elixir
-">
+	  <meta name="description" content="Metaprogramming Metaprogramming is the writing of computer programs with the ability to treat programs as their data. It means that a program could &hellip;">
 	  
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,39 +36,210 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<!-- Slide One -->
+<section>
+  <section>
+    <h2>Metaprogramming</h2>
+    <blockquote class="fragment">
+      Metaprogramming is the writing of computer programs with the ability to treat programs as their data. It means that a program could be designed to read, generate, analyse and/or transform other programs, and even modify itself while running.
+    </blockquote>
+  </section>
+  <section><p>Code that writes code</p></section>
 
+  <section>
+    <p> Dynamic vs Static </p>
 
-<p><section>
-  <section><h2>Metaprogramming</h2></section>
-  <section>Code that writes code</section>
-  <section>&ldquo;Dynamic&rdquo; vs &ldquo;Static&rdquo;</section>
-</section></p>
+    <ul>
+      <li class="fragment">
+        Dynamic: code that manipulate itself at runtime </li>
+
+      <li class="fragment">
+        Static:
+        <a href="Static metaprogramming approaches">static metaprogramming approaches</a></li>
+
+      <li class="fragment">
+        Ruby dynamic OO</li>
+
+      <li class="fragment">
+        Elixir Macro systems</li>
+    </ul>
+  </section>
+</section>
+
 
 <!-- Slide Two -->
-
-
-<p><section>
+<section>
   <section><h2>Ruby</h2></section>
-  <section>Dynamic programming language</section>
-  <section>Pure OO</section>
-  <section>Flexible</section>
-</section></p>
+  <section>
+    <a href="http://en.wikipedia.org/wiki/Dynamic_programming_language">
+     Dynamic programming language</a>
+     <ul class="fragment">
+       <li>
+        execute many common programming behaviors, at runtime</li>
+       <li>
+        which static programming languages perform during compilation</li>
+       <li>
+        include extension of the program, by adding new code, by extending objects and definitions, or by modifying the type system.</li>
+       <li>
+        <a href="/images/slides/ruby-1.8.png">Ruby 1.8</a> and
+        <a href="/images/slides/ruby-1.9.png">Ruby 1.9</a></li>
+     </ul>
+  </section>
 
-<!-- Slide Three -->
+  <section>
+    <p>Pure OO</p>
+    <ul class="fragment">
+      <li>Everything is an object, even numbers and other primitive types</li>
+      <li>Instance variables + methods</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Flexible</p>
+    <ul class="fragment">
+      <li>Everything can be altered: class object, regular object, variables, methods</li>
+      <li>Single inheritance + Mixin</li>
+      <li>Block</li>
+      <li>&#8230;</li>
+    </ul>
+  </section>
+</section>
+
+<!-- Slide Three: Ruby object model,  Ruby mixin hierachy-->
+<section>
+  <section>
+    <img class="center" src="/images/slides/ruby-object-model.png" width="500" height="500">
+    <ul class="fragment">
+      <li>regular objects: instance variables, class pointer</li>
+      <li>class objects: class instance variables,instance methods, class pointer, superclass pointer</li>
+    </ul>
+  </section>
+
+  <section>
+    <img class="center" src="/images/slides/ruby-mixin.png" width="500" height="500">
+    <ul class="fragment" style="display:block;">
+      <li>For method lookup</li>
+      <li>D.ancestors => [C, M, Object, Kernel, BasicsObject]</li>
+    </ul>
+  </section>
+
+  <section>
+    <img class="center" src="/images/slides/ruby-singleton-hierachy.png" width="500" height="500">
+    <ul class="fragment">
+      <li>singleton methods vs instance methods vs class methods</li>
+      <li>singleton class vs metaclass</li>
+    </ul>
+  </section>
+</section>
+
+<!-- Slide Four: Examples -->
+<section data-transition="linear">
+  <section>
+    <pre><code data-trim contenteditable>
+require 'sinatra'
+
+ get '/' do
+   'Hello world!'
+ end
+
+ get '/*' do
+   # halt 400, 'go away!'
+   status 400
+   headers "Allow" => "BREW, POST, GET, PROPFIND, WHEN",
+           "Refresh" => "Refresh: 20; http://www.ietf.org/rfc/rfc2324.txt"
+   body "I'm a tea pot!"
+ end
+
+ # $> ruby sinatra_router.rb
+    </code></pre>
+  </section>
+</section>
 
 
-<p><section>
-<img class="center" src="/images/slides/ruby-object-model.png" width="500" height="500">
-</section></p>
+<!-- Elixir part -->
+<section>
+  <section data-background="#007777">
+    <h2>Elixir</h2>
+    <ul class="fragment">
+     <li><a href="/images/slides/elixir-compile-process.png">compile-time</a> metaprogramming</li>
+     <li>the compiler starts with an AST that resembles this code. This AST is then expanded to produce the final code</li>
+     <li>Elixir AST fragment: {operation, context, arguments} </li>
+     <li>Expansion phase</li>
+     <li>Tools: quote, unquote, __using__, __before_compile__</li>
+    </ul>
+  </section>
 
-<!-- Slide Four -->
+  <section>
+    <pre><code data-trim contenteditable>
+sum_expr = quote do: a + b
 
+bind_expr = quote do
+    a = 1
+    b = 2
+  end
 
-<p><section>
-<img class="center" src="/images/slides/ruby-mixin.png" width="500" height="500">
-</section></p>
+final_expr = quote do
+  unquote(bind_expr)
+  unquote(sum_expr)
+end
 
-<p><section><strong>Elixir</strong></section></p>
+# $> iex
+    </code></pre>
+    <ul class="fragment">
+      <li>We produced a new AST fragment that conbines both expressions</li>
+    </ul>
+  </section>
+
+  <section>
+    <pre><code>
+iex1> defmodule Tracer do
+       #...
+      end
+
+iex2> require Tracer
+
+iex3> quoted = quote do Tracer.trace(1+2) end
+
+iex4> expanded = Macro.expand(quoted, __ENV__)
+
+iex5> Macro.to_string(expanded) |> IO.puts
+    </code></pre>
+  </section>
+</section>
+
+<section>
+  <section>
+    <pre><code>
+defmodule MyModule do
+  require Tracer
+
+  #...
+  def some_fun(...) do
+    Tracer.trace(...)
+  end
+end
+  </code></pre>
+  </section>
+
+  <section>
+    <pre><code>
+defmodule MyModule do
+  require Tracer
+  ...
+  def some_fun(...) do
+    result = 1 + 2
+    Tracer.print("1 + 2", result)
+    result
+  end
+end
+    </code></pre>
+  </section>
+</section>
+
+<section>
+  <blockquote>
+     The point of all this is to demonstrate that your macro call is really expanded to something else. This is how macros work. Though we only tried it from the shell, the same things happen when we&#8217;re building our projects with mix or elixirc.
+  </blockquote>
+</section>
 
 			</div>
 

@@ -133,27 +133,22 @@ Dynamic metaprogramming vs Static metaprogramming &hellip;">
 <ul>
 <li>Writing code that writes code</li>
 <li>Dynamic metaprogramming vs Static metaprogramming</li>
+<li>Elixir/Clojure Macro systems</li>
 </ul>
 
-
-<blockquote><p>Code that manipulate itself at runtime: so called &lsquo;dynamic&rsquo; metaprogramming</p></blockquote>
-
-<p>.</p>
-
-<blockquote><p>powerful introspection</p></blockquote>
 
 <h1>Ruby</h1>
 
-<h2><a href="http://en.wikipedia.org/wiki/Dynamic_programming_language">Dynamic programming language</a></h2>
+<h2>Dynamic programming language</h2>
 
 <ul>
-<li>Ruby has it&rsquo;s own VM call YARM: tokenizing, parsing, compiling, executing</li>
+<li>Ruby has it&rsquo;s own VM call YARV: tokenizing, parsing, compiling, executing</li>
 <li>Ruby doesn&rsquo;t do type checking
-** code optimization are done at compilation time?</li>
+** code optimization are done at converting AST into YARV instructions</li>
 </ul>
 
 
-<blockquote><p> Type checking, register allocation, code generation, and code optimization are typically done at compile time</p></blockquote>
+<blockquote><p> static language: Type checking, register allocation, code generation, and code optimization are typically done at compile time</p></blockquote>
 
 <h2>Pure OO</h2>
 
@@ -161,7 +156,7 @@ Dynamic metaprogramming vs Static metaprogramming &hellip;">
 <li>numbers and other primitive types are not objects in some other languages</li>
 <li><strong>Everything is object</strong>: that&rsquo;s an important rule</li>
 <li>instance variable + methods to all types of objects</li>
-<li>operators are syntactic sugar for methods: e.g. <code>+</code></li>
+<li>operators are syntactic sugar for methods: e.g. <code>+</code> (smiliar)</li>
 </ul>
 
 
@@ -169,30 +164,30 @@ Dynamic metaprogramming vs Static metaprogramming &hellip;">
 
 <ul>
 <li>Allow users to freely alter its parts at runtime</li>
-<li>Functional support via Closures: block, lambda, proc which can be attached to any method, heavily used in ruby&rsquo;s Enumerable module</li>
 <li>Single inheritance + Mixin</li>
+<li>Functional support via Closures: block, lambda, proc which can be attached to any method, heavily used in ruby&rsquo;s Enumerable module</li>
+<li>dynamic query information + alert definitions</li>
 </ul>
 
 
-<p>On top of that, Ruby provides many ways to inspect and change itself dynamically, to query information about itself &mdash; methods, instance
-variables, superclasses, to defining a method or a constant.</p>
+<blockquote><p>Not making a deal between you and compiler, defining class in Ruby is actually running code</p></blockquote>
 
-<p>Not making a deal between you and compiler, defining class in Ruby is actually running code</p>
+<p>Adding / removing methods: it can deprecate many boilerplate code, such as getter and setter. In some other OO languages, Class acts like a contract/template, it allows to spawn many instances as it describes, but doesn&rsquo;t allow itself to be modified. So you need to specify every single method in this template definition, we call it boilerplate methods. Ruby totally avoid this via <code>define_methods</code>, <code>method_missing</code> &hellip;</p>
 
-<p>Adding / removing methods: it can deprecate many boilerplate code, such as getter and setter. In some other OO languages, Class acts like a contract/template, it allows to spawn many instances as it describes, but doesn&rsquo;t allow itself to be modified. So you need to specify every single method in this template definition, we call it boilerplate methods.Ruby totally avoid this via <code>define_methods</code>, <code>method_missing</code> &hellip;</p>
-
-<h2>Ruby object model: rules</h2>
+<h2>Ruby object model</h2>
 
 <p> <img class="center" src="/images/2014-10/1.png" width="500" height="500"></p>
 
-<p>regular objects have instance variables, class pointer
-class objects have class instance variables, class pointer, superclass pointer</p>
+<ul>
+<li>regular objects: instance variables, class pointer</li>
+<li>class objects:   class instance variables, class pointer, superclass pointer</li>
+</ul>
+
 
 <p><img class="center" src="/images/2014-10/2.png" width="300" height="500"></p>
 
 <p>   class inheritance + mixin
-   <code>MyClass.ancestors =&gt; ...</code>
-   Kernel is a module, which was included in Object class</p>
+   <code>MyClass.ancestors =&gt; ...</code></p>
 
 <p> <img class="center" src="/images/2014-10/3.png" width="500" height="500"></p>
 
@@ -200,12 +195,6 @@ class objects have class instance variables, class pointer, superclass pointer</
    singleton class vs metaclass</p>
 
 <blockquote><p>All metaclasses are singleton classes, but not all singleton classes are metaclasses. Ruby automatically creates a metaclass for every class you create and uses it to hold class methods that you might declare later.</p></blockquote>
-
-<ul>
-<li><p><code>include</code> vs <code>extend</code> vs <code>ActiveSupport::Concern</code></p></li>
-<li><p>Method lookup &hellip;</p></li>
-</ul>
-
 
 <h2>Useful skills</h2>
 
@@ -219,14 +208,16 @@ class objects have class instance variables, class pointer, superclass pointer</
 </ol>
 
 
-<h2>How these useful</h2>
+<h2>Examples</h2>
 
 <ul>
 <li>HashSerializable</li>
+<li>Sinatra Router, minitest framework</li>
+<li>Elixir plug Router, Elixir ExUnit framework</li>
 </ul>
 
 
-<figure class='code'><figcaption><span>hash_serializable.rb</span><a href='/downloads/code/hash_serializable.rb' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>hash_serializable.rb</span><a href='/downloads/code/metaprogramming/hash_serializable.rb' title='Download code'> download</a></figcaption><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -274,17 +265,25 @@ class objects have class instance variables, class pointer, superclass pointer</
 <span class='line-number'>46</span>
 <span class='line-number'>47</span>
 <span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
 </pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">module</span> <span class="nn">HashSerializable</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># extend HashSerializable</span>
+</span><span class='line'>  <span class="c1"># act_as_serializable :auth_info, on: [:access_token, :notebook_guid, :token_expired, :sync_job]</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="k">def</span> <span class="nf">act_as_serializable</span> <span class="n">base</span><span class="p">,</span> <span class="n">options</span>
 </span><span class='line'>    <span class="n">serialize</span> <span class="n">base</span><span class="p">,</span> <span class="no">Hash</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span>             <span class="c1"># def auth_info</span>
-</span><span class='line'>      <span class="c1"># Return empty hash if nil base,      #   read_attribute(:auth_info) || {}</span>
-</span><span class='line'>      <span class="c1"># and reduce verbose `try` usage      # end</span>
+</span><span class='line'>      <span class="c1"># Return empty hash if nil base,     #   read_attribute(:auth_info) || {}</span>
+</span><span class='line'>      <span class="c1"># and reduce verbose `try` usage     # end</span>
 </span><span class='line'>      <span class="n">read_attribute</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{}</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">define_method</span> <span class="s2">&quot;clear_</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">!&quot;</span> <span class="k">do</span>     <span class="c1"># def clear_auth_info!</span>
+</span><span class='line'>    <span class="n">define_method</span> <span class="s2">&quot;clear_</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">!&quot;</span> <span class="k">do</span>      <span class="c1"># def clear_auth_info!</span>
 </span><span class='line'>      <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">=&quot;</span><span class="p">,</span> <span class="p">{})</span>                 <span class="c1">#   self.auth_info = {}</span>
 </span><span class='line'>      <span class="n">save!</span>                                <span class="c1">#   save!</span>
 </span><span class='line'>    <span class="k">end</span>                                    <span class="c1"># end</span>
@@ -292,19 +291,19 @@ class objects have class instance variables, class pointer, superclass pointer</
 </span><span class='line'>    <span class="n">options</span><span class="o">[</span><span class="ss">:on</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">attribute</span><span class="o">|</span>
 </span><span class='line'>      <span class="n">attribute</span> <span class="o">=</span> <span class="n">attribute</span><span class="o">.</span><span class="n">to_s</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="n">define_method</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span> <span class="k">do</span>                 <span class="c1"># def access_token</span>
-</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">[</span><span class="n">attribute</span><span class="o">]</span>                     <span class="c1">#   auth_info[&quot;access_token&quot;]</span>
-</span><span class='line'>      <span class="k">end</span>                                         <span class="c1"># end</span>
+</span><span class='line'>      <span class="n">define_method</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span> <span class="k">do</span>          <span class="c1"># def access_token</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">[</span><span class="n">attribute</span><span class="o">]</span>              <span class="c1">#   auth_info[&quot;access_token&quot;]</span>
+</span><span class='line'>      <span class="k">end</span>                                  <span class="c1"># end</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">=&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>                  <span class="c1"># def access_token= value</span>
-</span><span class='line'>        <span class="n">new_base</span> <span class="o">=</span> <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">({</span> <span class="n">attribute</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="p">})</span>      <span class="c1">#   auth_info[&quot;access_token&quot;] = value</span>
-</span><span class='line'>        <span class="c1"># Set new base to trigger Rails field changed event      # end</span>
+</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">=&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">value</span><span class="o">|</span>                <span class="c1"># def access_token= value</span>
+</span><span class='line'>        <span class="n">new_base</span> <span class="o">=</span> <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">({</span> <span class="n">attribute</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="p">})</span>   <span class="c1">#   auth_info[&quot;access_token&quot;] = value</span>
+</span><span class='line'>        <span class="c1"># Set new base to trigger Rails field changed event   # end</span>
 </span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">=&quot;</span><span class="p">,</span> <span class="n">new_base</span><span class="p">)</span>
 </span><span class='line'>      <span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">?&quot;</span> <span class="k">do</span>                <span class="c1"># def access_token?</span>
-</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">[</span><span class="n">attribute</span><span class="o">].</span><span class="n">present?</span>                 <span class="c1">#   auth_info[&quot;access_token&quot;].present?</span>
-</span><span class='line'>      <span class="k">end</span>                                              <span class="c1"># end</span>
+</span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">?&quot;</span> <span class="k">do</span>                        <span class="c1"># def access_token?</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">[</span><span class="n">attribute</span><span class="o">].</span><span class="n">present?</span>                        <span class="c1">#   auth_info[&quot;access_token&quot;].present?</span>
+</span><span class='line'>      <span class="k">end</span>                                                     <span class="c1"># end</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">_changed?&quot;</span> <span class="k">do</span>
 </span><span class='line'>        <span class="k">return</span> <span class="kp">false</span> <span class="k">unless</span> <span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">_changed?&quot;</span><span class="p">)</span>
@@ -312,50 +311,30 @@ class objects have class instance variables, class pointer, superclass pointer</
 </span><span class='line'>      <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">_was&quot;</span> <span class="k">do</span>               <span class="c1"># def access_token_was</span>
-</span><span class='line'>        <span class="p">(</span><span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">_was&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{})</span><span class="o">[</span><span class="n">attribute</span><span class="o">]</span>           <span class="c1">#   (auth_info_was || {})[&quot;access_token&quot;]</span>
-</span><span class='line'>      <span class="k">end</span>                                                <span class="c1"># end</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}</span><span class="s2">_was&quot;</span><span class="p">)</span> <span class="o">||</span> <span class="p">{})</span><span class="o">[</span><span class="n">attribute</span><span class="o">]</span>          <span class="c1">#   (auth_info_was || {})[&quot;access_token&quot;]</span>
+</span><span class='line'>      <span class="k">end</span>                                               <span class="c1"># end</span>
 </span><span class='line'>
 </span><span class='line'>      <span class="n">define_method</span> <span class="s2">&quot;remove_</span><span class="si">#{</span><span class="n">attribute</span><span class="si">}</span><span class="s2">!&quot;</span> <span class="k">do</span>           <span class="c1"># def remove_access_token!</span>
-</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>                     <span class="c1">#   auth_info.delete(&quot;access_token&quot;)</span>
-</span><span class='line'>        <span class="n">save!</span>                                            <span class="c1">#   save!</span>
-</span><span class='line'>      <span class="k">end</span>                                                <span class="c1"># end</span>
+</span><span class='line'>        <span class="nb">send</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>                    <span class="c1">#   auth_info.delete(&quot;access_token&quot;)</span>
+</span><span class='line'>        <span class="n">save!</span>                                           <span class="c1">#   save!</span>
+</span><span class='line'>      <span class="k">end</span>                                               <span class="c1"># end</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>minitest framework</li>
-</ul>
-
-
 <h1>Elixir</h1>
 
-<p>Ruby Router vs Elixir Router
-Ruby test framework vs Elixir test framework</p>
-
-<p>Runtime metaprogramming</p>
-
-<p>Compile-time metaprogramming</p>
-
 <ul>
-<li>no performance penalty</li>
+<li>Compile-time metaprogramming (no performance penalty)</li>
+<li>Elixir AST fragment: {operation, context, arguments}</li>
+<li>Expansion phase: compiler use quoted expression to generate final bytecode</li>
+<li>Tool: <code>quote</code> + <code>unquote</code></li>
 </ul>
 
 
-<h2>AST fragment is a triplet which consists of</h2>
-
-<ul>
-<li>operation</li>
-<li>context</li>
-<li>arguments</li>
-</ul>
-
-
-<p>quoted expression is an Elixir term</p>
-
-<p>compiler use quoted expression to generate final bytecode</p>
+<blockquote><p>quoted expression is an Elixir term</p>
 
 <p>evaluate a quoted expression by <code>Code.eval_quoted(quoted)</code></p>
 
@@ -363,7 +342,7 @@ Ruby test framework vs Elixir test framework</p>
 expression is not semantically verified.</p>
 
 <p>So we can inject that AST fragment to where <code>a</code> and <code>b</code> are valid
-identifier.</p>
+identifier.</p></blockquote>
 
 <div class='bogus-wrapper'><notextile><figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
 <span class='line-number'>2</span>
