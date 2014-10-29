@@ -4,7 +4,7 @@
   <title><![CDATA[zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-10-29T15:21:33+08:00</updated>
+  <updated>2014-10-29T16:34:27+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -25,7 +25,7 @@
 <ul>
 <li>Writing code that writes code</li>
 <li>Dynamic metaprogramming vs Static metaprogramming</li>
-<li>Elixir/Clojure Macro systems</li>
+<li>Ruby runtime support vs Elixir/Clojure Macro systems</li>
 </ul>
 
 
@@ -34,68 +34,69 @@
 <h2>Dynamic programming language</h2>
 
 <ul>
-<li>Ruby has it&rsquo;s own VM call YARV: tokenizing, parsing, compiling, executing</li>
-<li>Ruby doesn&rsquo;t do type checking
-** code optimization are done at converting AST into YARV instructions</li>
+<li>Ruby has it&rsquo;s own VM call YARV (tokenizing, parsing, compiling, executing)</li>
+<li>Ruby doesn&rsquo;t do type checking</li>
+<li>Code optimization are done when converting AST into YARV instructions</li>
 </ul>
 
 
-<blockquote><p> static language: Type checking, register allocation, code generation, and code optimization are typically done at compile time</p></blockquote>
+<p>For some static languages: type checking, register allocation, code generation, and code optimization are typically done at compile time.</p>
+
+<p>Instead of making a deal between you and compiler, defining class in Ruby is actually running code.</p>
 
 <h2>Pure OO</h2>
 
 <ul>
-<li>numbers and other primitive types are not objects in some other languages</li>
-<li><strong>Everything is object</strong>: that&rsquo;s an important rule</li>
-<li>instance variable + methods to all types of objects</li>
-<li>operators are syntactic sugar for methods: e.g. <code>+</code> (smiliar)</li>
+<li>Everything is object: even numbers and other primitive types</li>
+<li>Instance variable + methods to all types of objects</li>
+<li>Operators are just syntactic sugar for methods: e.g. <code>+</code></li>
 </ul>
 
 
 <h2>Flexible</h2>
 
 <ul>
-<li>Allow users to freely alter its parts at runtime</li>
+<li>Everything can be queried and altered at runtime (class objects, regular objects, variables, methods)</li>
 <li>Single inheritance + Mixin</li>
-<li>Functional support via Closures: block, lambda, proc which can be attached to any method, heavily used in ruby&rsquo;s Enumerable module</li>
-<li>dynamic query information + alert definitions</li>
+<li>Closures: block, lambda, proc (heavily used in ruby&rsquo;s Enumerable module)</li>
 </ul>
 
-
-<blockquote><p>Not making a deal between you and compiler, defining class in Ruby is actually running code</p></blockquote>
 
 <p>Adding / removing methods: it can deprecate many boilerplate code, such as getter and setter. In some other OO languages, Class acts like a contract/template, it allows to spawn many instances as it describes, but doesn&rsquo;t allow itself to be modified. So you need to specify every single method in this template definition, we call it boilerplate methods. Ruby totally avoid this via <code>define_methods</code>, <code>method_missing</code> &hellip;</p>
 
 <h2>Ruby object model</h2>
 
-<p> <img class="center" src="http://zhenwusw.github.io/images/2014-10/1.png" width="500" height="500"></p>
+<p>  <img class="center" src="http://zhenwusw.github.io/images/slides/ruby-object-model.png" width="500" height="500"></p>
 
 <ul>
 <li>regular objects: instance variables, class pointer</li>
-<li>class objects:   class instance variables, class pointer, superclass pointer</li>
+<li>class objects: class instance variables,instance methods, class pointer,  superclass pointer</li>
 </ul>
 
 
-<p><img class="center" src="http://zhenwusw.github.io/images/2014-10/2.png" width="300" height="500"></p>
+<p>  <img class="center" src="http://zhenwusw.github.io/images/slides/ruby-mixin.png" width="300" height="500"></p>
 
-<p>   class inheritance + mixin
-   <code>MyClass.ancestors =&gt; ...</code></p>
+<ul>
+<li>class inheritance + mixin</li>
+<li>D.ancestors => [C, M, Object, Kernel, BasicsObject]</li>
+</ul>
 
-<p> <img class="center" src="http://zhenwusw.github.io/images/2014-10/3.png" width="500" height="500"></p>
+
+<p> <img class="center" src="http://zhenwusw.github.io/images/slides/ruby-singleton-hierachy.png" width="500" height="500"></p>
 
 <p>   singleton methods vs instance methods vs class methods
    singleton class vs metaclass</p>
 
-<blockquote><p>All metaclasses are singleton classes, but not all singleton classes are metaclasses. Ruby automatically creates a metaclass for every class you create and uses it to hold class methods that you might declare later.</p></blockquote>
+<p>All metaclasses are singleton classes, but not all singleton classes are metaclasses. Ruby automatically creates a metaclass for every class you create and uses it to hold class methods that you might declare later.</p>
 
-<h2>Useful skills</h2>
+<h2>Language support</h2>
 
 <ol>
 <li>define_method + send</li>
-<li>method_missing + const_missing</li>
+<li>method_missing, const_missing</li>
 <li>instance_variable_get/set</li>
 <li>instance_methods</li>
-<li>instance_eval + class_eval</li>
+<li>instance_eval, class_eval</li>
 <li>Hooks: inherited, included, extend_object, method_added, method_removed, method_undefined</li>
 </ol>
 
@@ -219,22 +220,34 @@
 <h1>Elixir</h1>
 
 <ul>
-<li>Compile-time metaprogramming (no performance penalty)</li>
-<li>Elixir AST fragment: {operation, context, arguments}</li>
-<li>Expansion phase: compiler use quoted expression to generate final bytecode</li>
-<li>Tool: <code>quote</code> + <code>unquote</code></li>
+<li><p>Compile-time metaprogramming (no performance penalty)</p>
+
+<p>Unlike Ruby, we don&rsquo;t have access to the process when Ruby AST
+converts to YARV instructions. In Elixir, we have full access to
+the compile process, which consists of AST expansion stage and
+bytecode generation stage. Use <code>mix</code> or <code>elixirc</code> to generate the
+final bytecode.</p>
+
+<p><img class="center" src="http://zhenwusw.github.io/images/slides/elixir-compile-process.png" width="600" height="300"></p></li>
+<li><p>Elixir AST fragment: {operation, context, arguments}</p>
+
+<ul>
+<li><code>operation</code> is an atom or another tuple in the same representation</li>
+<li><code>context</code> is keyword list containing metadata, like numbers and contexts</li>
+<li><code>arguments</code> is either a list of arguments for the function call or an atom</li>
+</ul>
+</li>
+<li><p>quote + unquote</p>
+
+<p><code>quote</code> and <code>unquote</code> are two of the important tools Elixir macro system
+provides. <code>quote</code> is used to creating AST fragments, <code>unquote</code> is used to
+combine these AST fragments.</p></li>
 </ul>
 
 
-<blockquote><p>quoted expression is an Elixir term</p>
-
-<p>evaluate a quoted expression by <code>Code.eval_quoted(quoted)</code></p>
-
-<p>Macro evaluation is done by the compiler, before that, the quoted
+<p>Evaluate a quoted expression by <code>Code.eval_quoted(quoted)</code>;
+Macro evaluation is done by the compiler, before that, the quoted
 expression is not semantically verified.</p>
-
-<p>So we can inject that AST fragment to where <code>a</code> and <code>b</code> are valid
-identifier.</p></blockquote>
 
 <figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -257,188 +270,21 @@ identifier.</p></blockquote>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>We produced a new AST fragment that conbines both expressions.</p>
-
-<p><strong>this is the core of meta-programming approach in Elixir</strong></p>
-
-<blockquote><p>quote: code generation factory</p>
-
-<p>unquote: code generation tool</p></blockquote>
-
-<p><code>quote</code> vs <code>unquote</code>
-<code>quote</code> vs <code>Macro.to_string</code></p>
-
-<p>transformation(function invocation) happens in the expansion time</p>
-
-<p><strong>Macro receives quoted expression</strong></p>
-
-<p>In runtime, we don&rsquo;t have an access to AST anymore</p>
-
-<p><code>quoted = quote do Tracer.trace(1+2) end</code></p>
-
-<p>vs</p>
-
-<p><code>expanded = Macro.expand(quoted, __ENV__)</code></p>
-
-<p>Macro call is actually expanded AST fragments&hellip;</p>
-
-<blockquote><p>the same things happen when
-we&rsquo;re building our projects with mix or elixirc.</p></blockquote>
-
-<h2>Elixir AST: raw AST, final AST</h2>
-
-<h2>quote/unquote constructor</h2>
-
-<h2>Compile phase</h2>
-
-<h2>Macro mechanics</h2>
+<p>We produced a new AST fragment that combine both expressions, <strong>this is the core of meta-programming approach in Elixir</strong>.</p>
 
 <ul>
-<li>Expansion phase</li>
-<li>this is where compiler calls various macros</li>
-<li>receives input AST, produce output AST</li>
-<li>macro is replaced by the output AST</li>
-<li>re-expanded &hellip; until there&rsquo;s nothing left to expand</li>
-</ul>
-
-
-<blockquote><p>How can Elixir code run before it is produced?</p></blockquote>
-
-<p> It can&rsquo;t. To call a macro, the container module must already be
- compiled, that&rsquo;s why <code>require</code> or <code>import</code> is needed.</p>
-
-<blockquote><p>When we require a module, we instruct the Elixir to hold the compilation of the current module until the required module is compiled and loaded into the compiler run-time (the Erlang VM instance where compiler is running)</p></blockquote>
+<li><p>Transformation tools: <code>quote</code> vs <code>Macro.to_string</code> vs <code>Macro.expand(exp, __ENV__)</code></p></li>
+<li><p>Macro call is actually expanding AST fragments&hellip;</p></li>
+<li><p>Others</p>
 
 <ul>
 <li>Hygiene</li>
+<li><code>__use__</code>, <code>__before_compile__</code></li>
+<li><code>defmodule</code>, <code>def</code> are all macros</li>
+</ul>
+</li>
 </ul>
 
-
-<blockquote><p>This is an example of a macro introducing a variable that must not be hygienic. The variable conn is introduced by the get macro, but must be visible to the code where the macro is called.</p></blockquote>
-
-<ul>
-<li>macro invocation</li>
-</ul>
-
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="n">get</span> <span class="s2">&quot;/resource&quot;</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  </span><span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">get</span> <span class="s2">&quot;/resource&quot;</span><span class="p">,</span> <span class="p">[</span><span class="k">do</span><span class="p">:</span> <span class="o">...</span><span class="p">]</span> <span class="c1"># do keyword</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby&rsquo;s closure: <code>block.call</code>
-Elixir&rsquo;s macro do-keyword inject</p>
-
-<h2>function generation</h2>
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">def</span> <span class="n">my_fun</span> <span class="k">do</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span><span class="p">(</span><span class="n">my_fun</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="p">(</span><span class="o">...</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>def macro will receive the quoted representation which will, among other things, contain :my_fun.</p>
-
-<p>Whenever you pass a do&hellip;end block to a macro, it is the same as passing a keywords list with a :do key.</p>
-
-<p>for many constants (atoms, numbers, strings), the quoted representation is exactly the same as the input value.</p>
-
-<p>two element tuples and lists will retain their structure when quoted.</p></blockquote>
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="n">iex</span><span class="p">(</span><span class="m">7</span><span class="p">)</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do </span><span class="p">[</span><span class="ss">a:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">b:</span> <span class="m">2</span><span class="p">]</span> <span class="k">end</span>
-</span><span class='line'><span class="p">[</span><span class="ss">a:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">b:</span> <span class="m">2</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>It receives some AST fragments, and combines them together with the boilerplate code, to generate the final result.</strong></p>
-
-<p> generic code is implemented as macro function
- specific code <code>use</code> macro function</p>
-
-<ul>
-<li><code>use</code>: Elixir mixin, <code>__using__</code></li>
-</ul>
-
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">MyRouter</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  </span><span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">get</span> <span class="s2">&quot;/hello&quot;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;Hi!&quot;</span><span class="p">}</span>    <span class="c1"># macro invocation</span>
-</span><span class='line'>  <span class="n">get</span> <span class="s2">&quot;/goodbye&quot;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;Bye!&quot;</span><span class="p">}</span> <span class="c1"># macro invocation</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class='highlight'><table><td class='gutter'><pre class='line-numbers'><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='elixir'><span class='line'><span class="k">defmodule</span> <span class="no">MyRouter</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  def</span> <span class="n">match</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="n">do_match</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="n">get</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="n">post</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'><span class="k">  end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>input AST is analyzed and parse in advance</li>
-<li>Parse input AST fragments to get some specific informations</li>
-</ul>
-
-
-<p><strong>Ruby reopen class, define method dynamically, closure</strong>
-<strong>Elixir reassembles AST</strong></p>
-
-<p>via pattern matching</p>
-
-<p>prefer runtime abstraction</p>
-
-<p><code>assert expected == required</code></p>
-
-<p><code>defmacro assert({:==, _, [lhs, rhs]} = expr)</code></p>
-
-<blockquote><p>binary operators are quoted as two arguments function calls.</p></blockquote>
 ]]></content>
   </entry>
   
