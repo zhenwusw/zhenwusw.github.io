@@ -4,7 +4,7 @@
   <title><![CDATA[zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-10-30T16:22:49+08:00</updated>
+  <updated>2014-10-30T22:53:36+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -18,7 +18,7 @@
     <link href="http://zhenwusw.github.io/blog/2014/10/20/metaprogramming/"/>
     <updated>2014-10-20T22:49:00+08:00</updated>
     <id>http://zhenwusw.github.io/blog/2014/10/20/metaprogramming</id>
-    <content type="html"><![CDATA[<p><embed src='http://zhenwusw.github.io/slides/metaprogramming' allowFullScreen='true' width='640' height='640' align='middle'></embed></p>
+    <content type="html"><![CDATA[<p><a href="http://zhenwusw.github.io/slides/metaprogramming#/">Slides</a></p>
 
 <h1>Metaprogramming</h1>
 
