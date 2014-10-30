@@ -46,7 +46,25 @@
       Metaprogramming is the writing of computer programs with the ability to treat programs as their data. It means that a program could be designed to read, generate, analyse and/or transform other programs, and even modify itself while running.
     </blockquote>
   </section>
-  <section><p>Code that writes code</p></section>
+
+  <section>
+    <p>Code that writes code</p>
+  </section>
+
+  <section>
+    <p>source code -> target code</p>
+    <ul class="fragment">
+      <li >Coffeescript</li>
+      <li>Sass</li>
+      <li>source and target are both readable</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>source code -> AST -> bytecode -> runtime</p>
+    <img class="fragment" src="/images/slides/ruby-compile-process.png" width="600" height="100">
+    <img class="fragment" src="/images/slides/elixir-compile-process.png" width="600" height="300">
+  </section>
 
   <section>
     <p> Dynamic vs Static </p>
@@ -121,16 +139,30 @@
   <section>
     <img class="center" src="/images/slides/ruby-mixin.png" width="500" height="500">
     <ul class="fragment" style="display:block;">
-      <li>For method lookup</li>
+      <li>Method lookup</li>
       <li>D.ancestors => [C, M, Object, Kernel, BasicsObject]</li>
     </ul>
   </section>
 
   <section>
     <img class="center" src="/images/slides/ruby-singleton-hierachy.png" width="500" height="500">
+
     <ul class="fragment">
       <li>singleton methods vs instance methods vs class methods</li>
       <li>singleton class vs metaclass</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Powerful language instrospection</p>
+
+    <ul class="fragment">
+      <li>define_method + send</li>
+      <li>method_missing, const_missing</li>
+      <li>instance_variable_get/set</li>
+      <li>instance_methods</li>
+      <li>instance_eval, class_eval</li>
+      <li>Hooks: inherited, included, extend_object, method_added, method_removed, method_undefined</li>
     </ul>
   </section>
 </section>
@@ -156,12 +188,26 @@ require 'sinatra'
  # $> ruby sinatra_router.rb
     </code></pre>
   </section>
+  <section>
+    <pre><code>
+class << self
+  ...
+
+  def get(path, opts = {}, &block)
+  def put(path, opts = {}, &bk)
+  ...
+
+  def route(verb, path, options = {}, &block)
+  ...
+end
+    </code></pre>
+  </section>
 </section>
 
 
 <!-- Elixir part -->
 <section>
-  <section data-background="#007777">
+  <section>
     <h2>Elixir</h2>
     <ul class="fragment">
      <li><a href="/images/slides/elixir-compile-process.png">compile-time</a> metaprogramming</li>
@@ -208,9 +254,7 @@ iex4> expanded = Macro.expand(quoted, __ENV__)
 iex5> Macro.to_string(expanded) |> IO.puts
     </code></pre>
   </section>
-</section>
 
-<section>
   <section>
     <pre><code>
 defmodule MyModule do
@@ -222,10 +266,10 @@ defmodule MyModule do
   end
 end
   </code></pre>
-  </section>
+ </section>
 
-  <section>
-    <pre><code>
+ <section>
+   <pre><code>
 defmodule MyModule do
   require Tracer
   ...
