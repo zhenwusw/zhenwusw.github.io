@@ -75,7 +75,7 @@
 
       <li class="fragment">
         Static:
-        <a href="Static metaprogramming approaches">static metaprogramming approaches</a></li>
+        <a href="http://en.wikipedia.org/wiki/Metaprogramming#Approaches">static metaprogramming approaches</a></li>
 
       <li class="fragment">
         Ruby dynamic OO</li>
@@ -241,42 +241,27 @@ end
 
   <section>
     <pre><code>
-iex1> defmodule Tracer do
-       #...
-      end
-
-iex2> require Tracer
-
-iex3> quoted = quote do Tracer.trace(1+2) end
-
-iex4> expanded = Macro.expand(quoted, __ENV__)
-
-iex5> Macro.to_string(expanded) |> IO.puts
+iex(1)> Tracer.trace(1 + 2)
+Result of 1 + 2: 3
+3
     </code></pre>
   </section>
 
   <section>
     <pre><code>
-defmodule MyModule do
-  require Tracer
+defmodule Tracer do
+  defmacro trace(expression_ast) do
+    string_representation = Macro.to_string(expression_ast)
 
-  #...
-  def some_fun(...) do
-    Tracer.trace(...)
+    quote do
+      result = unquote(expression_ast)
+      Tracer.print(unquote(string_representation), result)
+      result
+    end
   end
-end
-  </code></pre>
- </section>
 
- <section>
-   <pre><code>
-defmodule MyModule do
-  require Tracer
-  ...
-  def some_fun(...) do
-    result = 1 + 2
-    Tracer.print("1 + 2", result)
-    result
+  def print(string_representation, result) do
+    IO.puts "Result of #{string_representation}: #{inspect result}"
   end
 end
     </code></pre>
