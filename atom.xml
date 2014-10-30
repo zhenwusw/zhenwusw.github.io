@@ -4,7 +4,7 @@
   <title><![CDATA[zhenwusw]]></title>
   <link href="http://zhenwusw.github.io/atom.xml" rel="self"/>
   <link href="http://zhenwusw.github.io/"/>
-  <updated>2014-10-30T22:53:36+08:00</updated>
+  <updated>2014-10-30T22:57:46+08:00</updated>
   <id>http://zhenwusw.github.io/</id>
   <author>
     <name><![CDATA[zhen]]></name>
@@ -387,15 +387,6 @@ maximum' (x:xs)
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Automated Browser Testing on Internet Explorer with Capybara]]></title>
-    <link href="http://zhenwusw.github.io/blog/2014/09/10/automated-browser-testing-on-ie-with-capybara/"/>
-    <updated>2014-09-10T20:26:00+08:00</updated>
-    <id>http://zhenwusw.github.io/blog/2014/09/10/automated-browser-testing-on-ie-with-capybara</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
